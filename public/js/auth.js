@@ -1702,7 +1702,7 @@ $(document).ready(function(){
             }
         });
         $(".dditem").click(function(){
-            $("#university").text($(this).text());
+            $("#university span.name").text($(this).text());
             let opened = 'university';
             closeDropDown(opened);    
         });
@@ -1759,7 +1759,7 @@ $(document).ready(function(){
     let submit_clickable = true;
     $('#submit').click(function(){
         if (submit_clickable){      
-            submit_clickable = false;  
+            submit_clickable = false;   
             $('#submit').text('Submitting...');
             $('.error').remove();
 
@@ -1773,6 +1773,8 @@ $(document).ready(function(){
             coldata['institution'] = $('#university .name').text();
             coldata['role'] = 'Member';
             coldata['redir'] = 'yes';
+
+            console.log(coldata);
             
             axios({
                 method: 'POST',
@@ -1788,10 +1790,9 @@ $(document).ready(function(){
 
                 console.log(response);
                 if (data['response'] === 'passed'){
-
+                    sessionStorage.setItem('user', data['data']['user']);
                     window.location.href = './dashboard';
                 }else{
-                    popAlert('Not found')
                     if ((data['reason'] === 'valerror')){
                         let errs = JSON.parse(data['data']);
                         for (const key in errs) {
@@ -1803,6 +1804,8 @@ $(document).ready(function(){
                             }
                             
                         }
+                    }else{
+                      popAlert(data['reason']);
                     }
                 }
             })
@@ -1814,8 +1817,7 @@ $(document).ready(function(){
 
 
 function listenfordata(ids){
-    let data = {};
- 
+    let data = {}; 
     for (let i = 0; i < ids.length; i++) {
         const id = ids[i];
         data[id] = $('#'+id + " input").val();        

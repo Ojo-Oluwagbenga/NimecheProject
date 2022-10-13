@@ -30,7 +30,7 @@
             
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="<?php echo asset('js\auth.js')?>" ></script>               
-        
+         
     </head>
     
     <body> 
@@ -89,239 +89,251 @@
 
                 <a style="color:black" class="navbar-brand mx-auto mx-lg-0">NiMeche Students</a>
 
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-lg-5">
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="/welcome" style="margin-bottom:20px">Home</a>
+                        </li>
+ 
+                        <li class="nav-item">
+                            <a class="nav-link" href="/login" style="margin-bottom:20px">Login</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+
             </div>
         </nav>   
  
         <main> 
             
             <section style="position:relative; z-index:2; background:none" class="contact section-padding" id="section_5">
-                    <div class="container">
-                        <div class="row">
+                <div class="container">
+                    <div class="row">
 
-                            <div class="col-lg-6 col-12 mt-5 mt-lg-0">
-                                <div class="contact-info d-flex flex-column">
-                                    <strong class="site-footer-title d-block mb-3">About </strong>
+                        <div class="col-lg-6 col-12 mt-5 mt-lg-0">
+                            <div class="contact-info d-flex flex-column">
+                                <strong class="site-footer-title d-block mb-3">About </strong>
 
-                                    <p class="mb-2">
-                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam mollitia deleniti eveniet nisi aliquam enim laboriosam est consequuntur, earum vel animi labore officia inventore error quae facilis provident ab. Ex quisquam tempora impedit. Esse dolore in hic praesentium, natus aliquid. Laborum assumenda natus aliquid eius facilis ipsum ad sint numquam.
-                                    </p>
+                                <p class="mb-2">
+                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam mollitia deleniti eveniet nisi aliquam enim laboriosam est consequuntur, earum vel animi labore officia inventore error quae facilis provident ab. Ex quisquam tempora impedit. Esse dolore in hic praesentium, natus aliquid. Laborum assumenda natus aliquid eius facilis ipsum ad sint numquam.
+                                </p>
 
-                                </div>
                             </div>
+                        </div>
 
-                            <div class="col-lg-6 col-12 mt-5 mt-lg-0">
-                                <form class="custom-form contact-form" role="form">
-                                    <div id="code" class="">
-                                        <!-- <div class="error">Jey</div> -->
-                                        <div  class="form-floating">                                            
+                        <div class="col-lg-6 col-12 mt-5 mt-lg-0">
+                            <form class="custom-form contact-form" role="form">
+                                <div id="code" class="">
+                                    <!-- <div class="error">Jey</div> -->
+                                    <div  class="form-floating">                                            
+                                        <input type="text" name="name" class="form-control" placeholder="Name" required="">
+                                        
+                                        <label for="floatingInput">Code</label>
+                                        
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="row" >
+                                    <div id="name" class="col-lg-6 col-md-6 col-12">
+                                        <div class="form-floating">
                                             <input type="text" name="name" class="form-control" placeholder="Name" required="">
                                             
-                                            <label for="floatingInput">Code</label>
-                                            
+                                            <label for="floatingInput">Name</label>
                                         </div>
-                                        
                                     </div>
 
-                                    <div class="row" >
-                                        <div id="name" class="col-lg-6 col-md-6 col-12">
-                                            <div class="form-floating">
-                                                <input type="text" name="name" class="form-control" placeholder="Name" required="">
-                                                
-                                                <label for="floatingInput">Name</label>
-                                            </div>
-                                        </div>
-
-                                        <div id="email" class="col-lg-6 col-md-6 col-12"> 
-                                            <div class="form-floating">
-                                                <input type="email" name="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address" required="">
-                                                
-                                                <label for="floatingInput">Email address</label>
-                                            </div>
-                                        </div>
-
-                                        
-                                        <div id="gender" class="orderbybox">
-                                            <div class="orderbyhead" >
-                                                <span style="position:relative;margin:unset" class="centerVert">Select Gender</span>
-                                            </div>
-                                            <div class="orderbybutTab">
-                                                <div class="orderbybut" mychecked=0 gend='m'>
-                                                    <div class="obhold"><div class="obname centerVert">Male</div><div class="obcircle centerVert"></div></div>
-                                                </div>
-                                                <div class="orderbybut" mychecked=0 gend='f'>
-                                                    <div class="obhold"><div class="obname centerVert">Female</div><div class="obcircle centerVert"></div></div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div id="institution" class="providerSelectBox itembox" id="providersuper">
-                                            <div class="nameBar">
-                                                Select Institution
-                                            </div>
-                                            <div  style="padding:10px;display:flex;justify-content: space-evenly;border: 2px solid var(--border-color);border-bottom: none;border-radius: 10px 0px 0px 0px;">
-                                                <input id='schoolsearch' style=" padding:5px;width: 70%; outline:none; border:none" placeholder="Enter any consecutive letters here" type="text"> 
-                                                <span id='schoolfilter' style="width: 20%; border-radius: 5px; color: green; padding:5px; cursor:pointer;font-weight: bold;">Filter</span>
-                                            </div>
-                                            <div class="ddhold" id="university" openstate=0 style="border-top: 2px dashed var(--border-color);; border-radius: 0 0 10px 0">
-                                
-                                                <span class="name">Obafemi Awolowo University</span>
-                                                <span  style="display:none" class="svghold"><svg style="height:14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg><span>
-                                            </div>
-
-                                            <div class="dropdownwrap">
-                                                <div class="dropdown">
-                                                    <div class="dditem" bio="mtn">MTN</div>
-                                                </div>
-                                            </div>
+                                    <div id="email" class="col-lg-6 col-md-6 col-12"> 
+                                        <div class="form-floating">
+                                            <input type="email" name="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address" required="">
                                             
-
+                                            <label for="floatingInput">Email address</label>
                                         </div>
+                                    </div>
 
-                                        <style>
-                                            .nameBar{
-                                                padding: 10px 0px ;
-                                                font-weight: bold;
-                                                font-size: 14px;
-                                                width: 95%;
-                                                margin: 0px auto;
-                                            }
-
-                                            .providerSelectBox{
-                                                position: relative;
-                                                margin: 10px 0px;
-                                            }
-                                            .ddhold{
-                                                position: relative;
-                                                width: 100%;
-                                                height: 65px;
-                                                /* box-shadow: 0px 1px 3px grey;
-                                                */
-                                                border: 2px solid var(--border-color);
-                                                display: flex;
-                                                z-index: 2;
-                                                font-weight: bold;
-                                                position: relative;
-                                                font-size: 14px;
-                                                flex-direction: column;
-                                                text-align: center;
-                                                border-radius: 10px 0;
-                                                margin: 0px auto;
-                                                justify-content: center;
-                                            }
-                                            .ddhold > span:nth-child(2){
-                                                position: absolute;
-                                                right: 2%;
-                                            }
-                                            .ddhold > span > i{
-                                                transform: rotateZ(90deg);
-                                            }
-                                            .dropdownwrap{
-                                                position: absolute;
-                                                width: 100%;
-                                                left: 0px;
-                                                top: calc(100% + 6px);
-                                                display: flex;
-                                                justify-content: center;
-                                            }
-                                            .dropdown{
-                                                width: 95%;
-                                                height: 0px;
-                                                position: relative;
-                                                z-index: 3;
-                                                transition: height 0.2s ease-in;
-                                                box-shadow: 0px 1px 3px grey;
-                                                margin: 5px auto;
-                                                max-height: 200px;
-                                                overflow: auto;
-                                                display: block;
-                                                background-color:white;
-                                            }
-                                            .dropdown .dditem{
-                                                height: 60px;
-                                                text-align: center;
-                                                width: 80%;
-                                                font-size: 14px;
-                                                font-weight: bold;
-                                                display: flex;
-                                                flex-direction: column;
-                                                padding: 10px;
-                                                justify-content: center;
-                                                border : 1px dashed #d3d3d3;
-                                                border-radius: 5px;
-                                                margin: 10px auto;
-                                                cursor: pointer;
-                                            }
-
-                                            .orderbybox{
-                                                margin: 10px 0px;
-                                                width: 100%;
-                                                /* height: 100px; */
-                                            }
-                                            .orderbybox .orderbyhead{
-                                                padding: 5px;
-                                                width: 95%;
-                                                font-weight: bold;
-                                                margin: 0px auto;
-                                                display: flex;
-                                                font-size: 13px;
-                                            }
-                                            .orderbybox .orderbyhead span:nth-child(2){
-                                                margin: 0px 15px; 
-                                                font-weight:normal; 
-                                                box-shadow: 0px 1px 3px -1px grey;
-                                                color: rgb(0, 0, 131);
-                                                padding:5px; 
-                                                border-radius: 0px 0px 5px 5px;
-                                                cursor: pointer;
-                                            } 
-                                            .orderbybox .orderbybutTab{
-                                                display: flex;
-                                                font-size: 12px;
-                                                /* height: 70%; */
-                                            }
-                                            .orderbybox .orderbybut{
-                                                display: flex;
-                                                width: calc(100%/3);
-                                                justify-content: space-around;
-                                                padding: 10px;
-                                            }
-                                            .orderbybox .orderbybut .obhold {
-                                                display: flex;
-                                                cursor: pointer;
-                                            }
-                                            .orderbybox .orderbybut .obhold :nth-child(n) {
-                                                margin-left: 5px;
-                                                margin-right: 5px;
-                                            }
-                                            .orderbybox .orderbybut .obcircle {
-                                                height: 20px;
-                                                width: 20px;
-                                                border:1px solid grey;
-                                                border-radius: 50%;
-                                            }
-                                            .orderbybox .orderbybut .obname {
-                                                font-size: 14px;
-                                            }
-                                        </style>
-
-                                        <div id="password" class="">
-                                            <div class="form-floating">
-                                            <input type="password" name="password" class="form-control" placeholder="Set A Password" required="">
-                                                
-                                                <label for="floatingInput">Password</label>
+                                    
+                                    <div id="gender" class="orderbybox">
+                                        <div class="orderbyhead" >
+                                            <span style="position:relative;margin:unset" class="centerVert">Select Gender</span>
+                                        </div>
+                                        <div class="orderbybutTab">
+                                            <div class="orderbybut" mychecked=0 gend='m'>
+                                                <div class="obhold"><div class="obname centerVert">Male</div><div class="obcircle centerVert"></div></div>
+                                            </div>
+                                            <div class="orderbybut" mychecked=0 gend='f'>
+                                                <div class="obhold"><div class="obname centerVert">Female</div><div class="obcircle centerVert"></div></div>
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="col-lg-3 col-12 ms-auto">
-                                            <div id="submit" class="submit form-control">Send</div>
+                                    <div id="institution" class="providerSelectBox itembox" id="providersuper">
+                                        <div class="nameBar">
+                                            Select Institution
+                                        </div>
+                                        <div  style="padding:10px;display:flex;justify-content: space-evenly;border: 2px solid var(--border-color);border-bottom: none;border-radius: 10px 0px 0px 0px;">
+                                            <input id='schoolsearch' style=" padding:5px;width: 70%; outline:none; border:none" placeholder="Enter any consecutive letters here" type="text"> 
+                                            <span id='schoolfilter' style="width: 20%; border-radius: 5px; color: green; padding:5px; cursor:pointer;font-weight: bold;">Filter</span>
+                                        </div>
+                                        <div class="ddhold" id="university" openstate=0 style="border-top: 2px dashed var(--border-color);; border-radius: 0 0 10px 0">
+                            
+                                            <span class="name">Obafemi Awolowo University</span>
+                                            <span  style="display:none" class="svghold"><svg style="height:14px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/></svg><span>
                                         </div>
 
-                                       
-                                    </div>
-                                </form>
-                            </div>
+                                        <div class="dropdownwrap">
+                                            <div class="dropdown">
+                                                <div class="dditem" bio="mtn">MTN</div>
+                                            </div>
+                                        </div>
+                                        
 
+                                    </div>
+
+                                    <style>
+                                        .nameBar{
+                                            padding: 10px 0px ;
+                                            font-weight: bold;
+                                            font-size: 14px;
+                                            width: 95%;
+                                            margin: 0px auto;
+                                        }
+
+                                        .providerSelectBox{
+                                            position: relative;
+                                            margin: 10px 0px;
+                                        }
+                                        .ddhold{
+                                            position: relative;
+                                            width: 100%;
+                                            height: 65px;
+                                            /* box-shadow: 0px 1px 3px grey;
+                                            */
+                                            border: 2px solid var(--border-color);
+                                            display: flex;
+                                            z-index: 2;
+                                            font-weight: bold;
+                                            position: relative;
+                                            font-size: 14px;
+                                            flex-direction: column;
+                                            text-align: center;
+                                            border-radius: 10px 0;
+                                            margin: 0px auto;
+                                            justify-content: center;
+                                        }
+                                        .ddhold > span:nth-child(2){
+                                            position: absolute;
+                                            right: 2%;
+                                        }
+                                        .ddhold > span > i{
+                                            transform: rotateZ(90deg);
+                                        }
+                                        .dropdownwrap{
+                                            position: absolute;
+                                            width: 100%;
+                                            left: 0px;
+                                            top: calc(100% + 6px);
+                                            display: flex;
+                                            justify-content: center;
+                                        }
+                                        .dropdown{
+                                            width: 95%;
+                                            height: 0px;
+                                            position: relative;
+                                            z-index: 3;
+                                            transition: height 0.2s ease-in;
+                                            box-shadow: 0px 1px 3px grey;
+                                            margin: 5px auto;
+                                            max-height: 200px;
+                                            overflow: auto;
+                                            display: block;
+                                            background-color:white;
+                                        }
+                                        .dropdown .dditem{
+                                            height: 60px;
+                                            text-align: center;
+                                            width: 80%;
+                                            font-size: 14px;
+                                            font-weight: bold;
+                                            display: flex;
+                                            flex-direction: column;
+                                            padding: 10px;
+                                            justify-content: center;
+                                            border : 1px dashed #d3d3d3;
+                                            border-radius: 5px;
+                                            margin: 10px auto;
+                                            cursor: pointer;
+                                        }
+
+                                        .orderbybox{
+                                            margin: 10px 0px;
+                                            width: 100%;
+                                            /* height: 100px; */
+                                        }
+                                        .orderbybox .orderbyhead{
+                                            padding: 5px;
+                                            width: 95%;
+                                            font-weight: bold;
+                                            margin: 0px auto;
+                                            display: flex;
+                                            font-size: 13px;
+                                        }
+                                        .orderbybox .orderbyhead span:nth-child(2){
+                                            margin: 0px 15px; 
+                                            font-weight:normal; 
+                                            box-shadow: 0px 1px 3px -1px grey;
+                                            color: rgb(0, 0, 131);
+                                            padding:5px; 
+                                            border-radius: 0px 0px 5px 5px;
+                                            cursor: pointer;
+                                        } 
+                                        .orderbybox .orderbybutTab{
+                                            display: flex;
+                                            font-size: 12px;
+                                            /* height: 70%; */
+                                        }
+                                        .orderbybox .orderbybut{
+                                            display: flex;
+                                            width: calc(100%/3);
+                                            justify-content: space-around;
+                                            padding: 10px;
+                                        }
+                                        .orderbybox .orderbybut .obhold {
+                                            display: flex;
+                                            cursor: pointer;
+                                        }
+                                        .orderbybox .orderbybut .obhold :nth-child(n) {
+                                            margin-left: 5px;
+                                            margin-right: 5px;
+                                        }
+                                        .orderbybox .orderbybut .obcircle {
+                                            height: 20px;
+                                            width: 20px;
+                                            border:1px solid grey;
+                                            border-radius: 50%;
+                                        }
+                                        .orderbybox .orderbybut .obname {
+                                            font-size: 14px;
+                                        }
+                                    </style>
+
+                                    <div id="password" class="">
+                                        <div class="form-floating">
+                                        <input type="password" name="password" class="form-control" placeholder="Set A Password" required="">
+                                            
+                                            <label for="floatingInput">Password</label>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-12 ms-auto">
+                                        <div id="submit" class="submit form-control">Send</div>
+                                    </div>
+
+                                    
+                                </div>
+                            </form>
                         </div>
+
                     </div>
                 </div>
             </section>

@@ -5,7 +5,7 @@
     @vite(['resources/js/app.js', 'resources/css/app.css'])
     
 @endsection('moreheads') 
-
+ 
 @section('content')
     <main>
         <section class="featured section-padding" id="section_3" style="padding-top: 150px;">
@@ -44,24 +44,7 @@
                     </div>
 
                     <div for="ResourcesSuper" id="eresourceID"  class="col-lg-6 col-12 vueport" style="margin: 20px 0">
-                        <div style="padding: 10px; border-radius: 5px; background-color:white; margin: 20px 0" >
-                            <h5 class="mb-0 event-head" style="font-size: 28px; padding: 20px"> Event Resources </h5>
-                            <div class="eresource">
-                                <span>F</span>
-                                <span>Display contef or prof oluwajer</span>
-                                <div class="c-vert event-full">
-                                    <svg height=10px xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M362.7 19.3L314.3 67.7 444.3 197.7l48.4-48.4c25-25 25-65.5 0-90.5L453.3 19.3c-25-25-65.5-25-90.5 0zm-71 71L58.6 323.5c-10.4 10.4-18 23.3-22.2 37.4L1 481.2C-1.5 489.7 .8 498.8 7 505s15.3 8.5 23.7 6.1l120.3-35.4c14.1-4.2 27-11.8 37.4-22.2L421.7 220.3 291.7 90.3z"/></svg>
-                                </div>
-                            </div>
-                            <div class="eresource">
-                                <span>F</span>
-                                <span>Display contef or prof oluwajer</span>
-                            </div>
-                            <div class="eresource">
-                                <span>F</span>
-                                <span>Display contef or prof oluwajer</span>
-                            </div>
-                        </div>
+                        
                     </div>
 
                     <div class="col-lg-6 col-12" style="margin: 20px 0">
@@ -112,6 +95,20 @@
                 </div>
             </div>
         </section>
+
+        <section class="section-padding" style="padding-top: 150px;">
+            <div class="container" style="overflow-x:scroll">
+                <div class="evstatus">
+                    <h3 class="c-vert name">Status</h3>
+                    <div state="2" style="background-color:black" class="c-vert stat">Done</div>
+                    <div state="1" style="background-color:green" class="c-vert stat">Start</div>
+                    <div state="0" style="background-color:#d7d705" class="c-vert stat">Queue</div>
+                    <div state="3" style="background-color:red" class="c-vert stat">Del</div>
+                </div>
+            </div>
+        </section>
+
+        
 
         <section for="CommentsSuper" id="section_5" class="contact section-padding vueport">
             

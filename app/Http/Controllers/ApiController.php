@@ -104,6 +104,9 @@ class User{
     public function addnew($request){
         $data = $request->all();
 
+        $userallowed = ['2FD5', 'SH45'];
+        $admin = ['admin'];
+
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'min:4', 'max:25', 'string'],
             'email' => ['required', 'email'],
@@ -181,10 +184,13 @@ class User{
         if (isset($data['redir'])){
             $this->startsession($request, $data['code']);
         }
+        $type = 'Admin';
+        // if code is in user allowed type will  be Member
         $ret = [
             'response' => 'passed',
             'data' => [
-                'user' =>  $data['code']
+                'user' =>  $data['code'],
+                'type' => $type
             ],
         ];
         return json_encode($ret);
@@ -312,7 +318,7 @@ class User{
                 'reason' => 'valerror',
                 'data' => json_encode($validator->errors()->get('*')),
             ];
-            return json_encode($ret);
+            return json_encode($ret); 
         }        
         
         try{
@@ -421,13 +427,14 @@ class Event{
         $data = $request->all();
         
         $createset = (array) json_decode($data['createset']);    
+
         $createset['state'] = '0';
         
         foreach($createset as $key => $val){
             if (!isset($this->valset[$key])){
                 unset($createset[$key]);
             }
-
+ 
         }
 
         $validator = Validator::make($createset, $this->valset);
@@ -523,12 +530,22 @@ class Event{
 
 
         $updset = ($data['updset']);
+        //This is in form {
+        //     "name":'new name',
+        // }
         $updpair = ($data['updpair']);
+        //This is in form {
+        //     ["code",'ogbre'],
+        // }
+
+        if ($updpair[0] == 'code'){
+
+            $updpair[1] = Util::Decode($updpair[1], 4, 'str');
+            $updpair[0] = 'id';   
+        }
 
         unset($updset['id']);
 
-
-        
         $updvaller = [];
 
         foreach($updset as $key => $val){
@@ -590,7 +607,7 @@ class Event{
         $ret = [
             'response' => 'passed',
             'data' => [
-                'user' =>   $model->id
+                'code' => Util::Encode($model->id, 4, 'str')
             ],
         ];
         return json_encode($ret);
@@ -599,25 +616,6 @@ class Event{
 
     public function addcomment($request){
         $data = $request->all();
-        $model = ModelEvent::where(['id' => 8])->first();
-        
-        $thoughts = $model['thoughts'];
-
-        $marr = (array) json_decode($thoughts);
-
-        $cc  = count($marr);
-
-        $marr[$cc+1] = "New"; 
-
-        $model->thoughts = (json_encode($marr));
-
-        // return json_encode(json_encode($marr));
-        $model->save();
-        return $cc;
-
-
-
-
 
         $eventcode = $data['eventcode'];
         $parentcode = $data['parentcode'];
@@ -642,7 +640,8 @@ class Event{
         try{
             $model = ModelEvent::where(['id' => $eid])->first();
             $thoughts = (array) json_decode($model['thoughts']);
-                   
+            $newcode = '';
+
             date_default_timezone_set("Africa/Lagos");
             $commentObj = [
                 'poster'=>$request->session()->get('user'),
@@ -653,7 +652,9 @@ class Event{
 
             if ($parentcode === ''){
                 $tc = count($thoughts);
-                $commentObj['cid'] = $tc;
+                $newcode = Util::Encode($tc, strlen($tc), 'str');;
+                $commentObj['cid'] = $newcode;
+
                 $thoughts[$tc + 1] = $commentObj;
             }else{
                 $branch = explode("-", $parentcode); //Branh in 0-2-3-1
@@ -666,11 +667,21 @@ class Event{
                 }
                 $inicount = count($node[$branch[$i]]['replies'])+1;
 
-                $commentObj['cid'] = $parentcode."-".$inicount;
+                $newcode = $parentcode."-".$inicount;
+                $newcode = Util::Encode($newcode, strlen($newcode), 'str');
+                $commentObj['cid'] =  $newcode;
                 $node[$branch[$i]]['replies'][$inicount] = $commentObj;
             }
-            
-            $comsarray = json_decode($model);
+
+            $model->thoughts = (json_encode($thoughts));
+            $model->save();
+
+            $ret = [
+                'response' => 'posted',
+                'reason' => '',
+                'data' => $newcode,
+            ];
+            return json_encode($ret);
             
         }catch(\Illuminate\Database\QueryException $ex){
             $ret = [
@@ -681,72 +692,6 @@ class Event{
             return json_encode($ret);
         }
 
-        $updvaller = [];
-
-        foreach($updset as $key => $val){
-            if (isset($this->valset[$key])){
-                $updvaller[$key] = $this->valset[$key];
-            }
-        }
-
-        $validator = Validator::make($updset, $updvaller);
-        if ($validator->fails()) {
-            $ret = [
-                'response' => 'failed',
-                'reason' => 'valerror',
-                'data' => json_encode($validator->errors()->get('*')),
-            ];
-            return json_encode($ret);
-        }
-
-
-        try{
-            $model = ModelEvent::where([$updpair[0] => $updpair[1]])->get(['id']);
-        }catch(\Illuminate\Database\QueryException $ex){ 
-            $ret = [
-                'response' => 'failed',
-                'reason' => $ex->getMessage(),
-                'data' => '',
-            ];
-            return json_encode($ret);
-        }
-
-        
-        
-        if (count($model) === 0){
-            $ret = [
-                'response' => 'failed',
-                'reason' => 'Event not found',
-                'data' => '',
-            ];
-            return json_encode($ret);
-        }
-
-        $model = ModelEvent::where([$updpair[0] => $updpair[1]])->first();
-
-        foreach($updset as $key => $val){
-            $model->$key = $val;
-        }
-        
-        try{
-            $model->save();
-        }catch(\Illuminate\Database\QueryException $ex){ 
-            $ret = [
-                'response' => 'failed',
-                'reason' => $ex->getMessage(),
-                'data' => '',
-            ];
-            return json_encode($ret);
-        }
-
-        $ret = [
-            'response' => 'passed',
-            'data' => [
-                'user' =>   $model->id
-            ],
-        ];
-        return json_encode($ret);
-        
     }
 
     public function fetch($request){
@@ -754,16 +699,19 @@ class Event{
 
         $fetchset =  $data['fetchset'];
         $querypair =  $data['querypair'];
-
-        //Sets the query code to the Id;
-        if (isset($querypair['code'])){
-            $querypair['id'] = Util::Decode($querypair['code'], 4, 'str');
-            unset($querypair['code']);
-        }
-        
         
         try{
-            $model = ModelEvent::select($fetchset)->where($querypair)->get();
+            if ($fetchset == '*'){
+                $model = ModelEvent::all();
+                foreach ($model as $ent) {
+                    $ent['code'] = Util::Encode($ent['id'], 4, 'str');
+                    unset($ent['id']);
+                }
+            }else{
+                $model = ModelEvent::select($fetchset)->where($querypair)->get();                
+            }
+            
+            return json_encode($model);
         }catch(\Illuminate\Database\QueryException $ex){ 
             $ret = [
                 'response' => 'failed',
@@ -772,8 +720,7 @@ class Event{
             ];
             return json_encode($ret);
         }
-
-        return json_encode($model);        
+                
     }
     
 }

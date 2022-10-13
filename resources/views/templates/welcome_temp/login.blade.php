@@ -22,33 +22,91 @@
         <link href="<?php echo asset('templateasset\welcome\css/magnific-popup.css')?> " rel="stylesheet">
 
         <link href="<?php echo asset('templateasset\welcome\css/templatemo-first-portfolio-style.css')?>" rel="stylesheet">
-
+        
+        <meta name="_token" content="{{ csrf_token() }}">
+        
         <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
-
+        <script src="<?php echo asset('templateasset\welcome\js/jquery.min.js')?> "></script>
+            
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="<?php echo asset('js\login.js')?>" ></script>               
+         
     </head>
     
-    <body>
+    <body> 
+        <div class="popalertBox">
+            <style>
+                .popalertBox{
+                    position: fixed;
+                    width: 100vw;
+                    bottom: 60px;
+                    display: none;
+                    z-index: 220;
+                }
+                .popalertBox .mypop{
+                    width: max-content;
+                    margin: 0px auto;
+                    padding: 10px;
+                    border-radius: 10px;
+                    background-color: #343434;
+                    transition: opacity 0.3s ease-in;
+                    color: white;
+                    /* font-family: "Open Sans Condensed", sans-serif; */
+                    font-size: 15px;
+                    font-weight: bold;
+                    opacity:1;
+                }
+            </style>
+            <div class="mypop">Pop Here</div>
+            <script>
+                function popAlert(text){
+                    $(".popalertBox").css('display', 'block');
+                    $(".popalertBox .mypop").css('opacity', '1').text(text);
+                    setTimeout(() => {
+                        $(".popalertBox .mypop").css('opacity', '0');
+                        setTimeout(() => {
+                            $(".popalertBox").css('display', 'none');
+                        }, 400);
+                    }, 2000);
+                }
+            </script>
+        </div>
 
         <section class="preloader">
             <div class="spinner">
                 <span class="spinner-rotate"></span>    
             </div>
         </section>
+
+        
         
         <nav class="navbar navbar-expand-lg">
-            <div class="container">
+            <div class="container"> 
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <a style="color:black" href="index.html" class="navbar-brand mx-auto mx-lg-0">NiMeche Student</a>
+                <a style="color:black" class="navbar-brand mx-auto mx-lg-0">NiMeche Students</a>
 
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-lg-5">
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="/welcome" style="margin-bottom:20px">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/start" style="margin-bottom:20px">Create account</a>
+                        </li>
+                        
+                    </ul>
+                </div>
 
             </div>
-        </nav>
-
-        <main>
+        </nav>   
+ 
+        <main> 
+            
             <section style="position:relative; z-index:2; background:none" class="contact section-padding" id="section_5">
                     <div class="container">
                         <div class="row">
@@ -65,24 +123,33 @@
                             </div>
 
                             <div class="col-lg-6 col-12 mt-5 mt-lg-0">
-                                <form action="#" method="get" class="custom-form contact-form" role="form">
-                                    <div class="">
-                                        <div class="form-floating">
-                                            <input type="text" name="code" id="code" class="form-control" placeholder="Enter your code or mail" required="">
-                                            <label for="floatingInput">Email or Code</label>
-                                        </div>
-                                    </div>
-                                    <div class=""> 
-                                        <div class="form-floating">
-                                        <input type="password" name="password" id="password" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Set A Password" required="">
+                                <form class="custom-form contact-form" role="form">
+                                    <div id="emailorcode" class="">
+                                        <div  class="form-floating">                                            
+                                            <input type="text" name="emailorcode" class="form-control" placeholder="Email address or Code" required="">
                                             
-                                            <label for="floatingInput">Password</label>
+                                            <label for="floatingInput">Email address</label>
+                                            
                                         </div>
+                                        
                                     </div>
-                                    <div class="col-lg-3 col-12 ms-auto">
-                                        <button type="submit" class="form-control">Login -></button>
+
+                                    <div class="row" >
+
+                                        <div id="password" class="">
+                                            <div class="form-floating">
+                                            <input type="password" name="password" class="form-control" placeholder="Set A Password" required="">
+                                                
+                                                <label for="floatingInput">Password</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-3 col-12 ms-auto">
+                                            <div id="submit" class="submit form-control">Login</div>
+                                        </div>
+
+                                       
                                     </div>
-                                    
                                 </form>
                             </div>
 
@@ -113,7 +180,6 @@
         </footer>
 
         <!-- JAVASCRIPT FILES -->
-        <script src="<?php echo asset('templateasset\welcome\js/jquery.min.js')?> "></script>
         <script src="<?php echo asset('templateasset\welcome\js/bootstrap.min.js')?> "></script>
         <script src="<?php echo asset('templateasset\welcome\js/jquery.sticky.js')?> "></script>
         <script src="<?php echo asset('templateasset\welcome\js/jquery.magnific-popup.min.js')?> "></script>

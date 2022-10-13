@@ -22,3 +22,19 @@
 .error{
     color: red;
 }
+
+.evstatus{
+    display: flex;
+}
+
+.evstatus .stat{
+    border-radius:100%;
+    color:white;
+    cursor:pointer;
+    height: 60px;
+    min-width: 60px;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 20px;
+    text-align: center;
+}

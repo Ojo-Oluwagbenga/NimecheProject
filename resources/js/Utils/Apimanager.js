@@ -27,6 +27,27 @@ export default class Apimanager{
         .catch(error => console.error(error))
 
     }
+
+    getallevents(func){
+
+        let url = window.location.origin + '/api/event/fetch';
+        axios({
+            method: 'POST',
+            url: url,
+            headers: {
+                'Cache-Control': 'no-cache',
+                "X-CSRF-TOKEN" : $('meta[name="_token"]').attr('content')
+            },
+            data: {
+                querypair:{},
+                fetchset:'*'
+            },
+        }).then(response => {
+            func(response); 
+                    
+        })
+        .catch(error => console.error(error))
+    }
     addeventcomment(eventcode, comment, parentcode, func){
         // Fetches from apod
         let url = window.location.origin + '/api/event/fetch';
@@ -66,4 +87,4 @@ export default class Apimanager{
         el.click();
         el.remove();
     }
-}
+} 

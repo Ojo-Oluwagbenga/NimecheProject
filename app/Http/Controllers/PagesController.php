@@ -12,6 +12,15 @@ class PagesController extends Controller{
     public function test(){
         return view('test');
     }
+
+    //     35th International Conference & Annual General Meeting
+
+    // The Nigerian Institution of Mechanical Engineers
+    // ( A division of The Nigerian Society of Engineers)
+    // National Students' Forum
+
+    // Old English Text
+    
     
     public function manager($pagename){
         // return Util::Encode("vrbH", 4, 'int');
@@ -32,8 +41,44 @@ class PagesController extends Controller{
         return $v;
     }
 
-    public function welcome($pagename){
+    public function welcome(){
         return view('templates.welcome_temp.welcome');        
+    }
+
+    public function myaccount(Request $request){
+        // v78R
+        if (!$request->session()->has('user')){
+            return redirect('/login');   
+        }
+
+        $code = $request->session()->get('user');
+
+        try{
+            $model = ModelUser::where(['code'=>$code])->first();
+            // ["host","blkd","room","10"]
+            $rmid = explode(":", $model->roomid);
+            $model->hostel = $rmid[0];
+            $model->block = $rmid[1];
+            $model->room = $rmid[2];
+            $model->bunk = $rmid[3];
+
+            if ($model->gender == 'f'){
+                $model->gender = 'Female';
+            }else{
+                $model->gender = 'Male';
+            }
+            
+            // return  $model;
+        }catch(\Illuminate\Database\QueryException $ex){ 
+            return $ex;
+        }
+
+        return view('templates.welcome_temp.myaccount')->with('data',$model);   
+    }
+
+    public function logout(Request $request){
+        $request->session()->flush();
+        return redirect('/welcome');   
     }
     public function eventdetails($code){
         // v78R
@@ -47,8 +92,7 @@ class PagesController extends Controller{
 
         return view('templates.welcome_temp.eventdetail')->with('data',$model);        
     }
-    
-    
+        
 
 }
 

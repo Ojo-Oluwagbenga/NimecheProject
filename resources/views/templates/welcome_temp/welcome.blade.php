@@ -23,6 +23,12 @@
 
         <link href="<?php echo asset('templateasset\welcome\css/templatemo-first-portfolio-style.css')?>" rel="stylesheet">
         
+        <link href="<?php echo asset('css\dashboard.css')?>" rel="stylesheet">
+
+        <meta name="_token" content="{{ csrf_token() }}">
+        
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  
+
         @vite(['resources/js/app.js', 'resources/css/app.css'])
 
     </head>
@@ -69,11 +75,6 @@
                         </li>
                     </ul>
 
-                    <div class="d-lg-flex align-items-center d-none ms-auto">
-                        <a class="custom-btn btn" href="/start">
-                            Start Here
-                        </a>
-                    </div>
                 </div>
 
             </div>
@@ -95,6 +96,7 @@
 
                                 <h2 class="mb-4">NiMeche 35th General Conference</h2>
                                 <p class="mb-4"><a class="custom-btn btn custom-link" href="/start">Start here</a></p>
+                                <p class="mb-4"><a class="custom-btn btn custom-link" href="/login">Login</a></p>
                             </div>
                         </div>
 
@@ -139,15 +141,10 @@
                     </div>
                 </div>
             </section>
+            
+            <section for="EventsSuper" class="vueport featured section-padding eventssuper" id="section_3">
 
-            <div id="app">
-
-            </div>
-
-            <!-- <section for='events' class="vueport featured section-padding" id="app">
-
-            </section> -->
-
+            </section>
 
             <section class="projects section-padding" id="section_4">
                 <div class="container">

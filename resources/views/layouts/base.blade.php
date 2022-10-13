@@ -29,11 +29,6 @@
         
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  
         
-        <script>
-
-            console.log(window.location.origin);
-            
-        </script>
         @yield('moreheads')
 
 
@@ -91,16 +86,50 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <a href="index.html" class="navbar-brand mx-auto mx-lg-0">NiMeche Student</a>
+                <a class="navbar-brand mx-auto mx-lg-0">NiMeche Student</a>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-lg-5">
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="/dashboard" style="margin-bottom:20px">Dashboard</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/createevent" style="margin-bottom:20px">Create event</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="/logout" style="margin-bottom:20px">Log out</a>
+                        </li>
+                        <!-- 
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_3">Timeline</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_4">Excos</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_5">Contact</a>
+                        </li> -->
+                    </ul>
+
+                    <!-- <div class="d-lg-flex align-items-center d-none ms-auto">
+                        <a class="custom-btn btn" href="/myaccount">
+                            My Account
+                        </a>
+                    </div> -->
+                </div>
 
                 <div class="d-flex align-items-center d-lg-none">
-                    <a class="custom-btn btn" href="#section_5">
+                    <a class="custom-btn btn" href="/myaccount">
                         My Account
                     </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-lg-5">
+                    <!-- <ul class="navbar-nav ms-lg-5">
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="#section_1">Home</a>
                         </li>
@@ -120,10 +149,10 @@
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="#section_5">Contact</a>
                         </li>
-                    </ul>
+                    </ul> -->
 
                     <div class="d-lg-flex align-items-center d-none ms-auto">
-                        <a class="custom-btn btn" href="#section_5">
+                        <a class="custom-btn btn" href="/myaccount">
                             My Account
                         </a>
                     </div>
