@@ -1,0 +1,13 @@
+.usertab{
+    position: relative;
+}
+.profile-small-title{
+    max-width: 100px;
+}
+.profile-thumb .profile-title svg{
+    height: 14px;
+    fill: green;
+}
+.contact{
+    padding: 10px;
+} 

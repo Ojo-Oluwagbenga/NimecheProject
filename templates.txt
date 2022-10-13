@@ -1,0 +1,35 @@
+<template lang="">
+
+
+</template>
+<script>
+
+import Apimanager from '../../Utils/Apimanager.js'; 
+export default {
+    name:"Resource",    
+    props:{
+        resource:String,
+    },
+    methods:{
+        downloadlink(){
+            let eventcode = $('meta[name="pagecode"]').attr('content');
+            let link = window.location.origin+'/eventfiles/event_'+eventcode+'/'+this.resource;
+            new Apimanager().download(link);
+        },
+    },
+    data(){
+        return {
+            
+        }
+    },
+    mounted(){
+
+    },
+    created(){
+        
+    },
+}
+</script> 
+<style lang="">
+    
+</style>

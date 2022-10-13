@@ -1,0 +1,24 @@
+.featured .eresource{
+    display: flex;
+    margin: 10px 0;
+    color: green;
+    cursor: pointer;
+    padding: 5px;
+    background-color: whitesmoke;
+    border-radius: 5px;
+}
+.featured .eresource{
+    max-width: 60%;
+    overflow: hidden;
+}
+.featured .eresource > :nth-child(n){
+    padding: 0 10px;
+}
+.errortaab{
+    border-left:2px solid red; 
+    border-radius: 0px 5px 5px 0px !important;
+    background-color: white;
+}
+.error{
+    color: red;
+}

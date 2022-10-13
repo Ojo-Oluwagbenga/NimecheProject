@@ -1,0 +1,44 @@
+
+
+.usertab{
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 3;
+}
+.usertab div.hero-text{
+    margin: 0px !important;
+    top: 0px !important;
+}
+.usertab h1.hero-title{
+    font-size: 25px;
+}
+
+.is-sticky .navbar-brand, .is-sticky .navbar-brand{
+    color: black;
+}
+.navbar-brand, .navbar-brand{
+    color: black;
+}
+.navbar-expand-lg .navbar-nav .nav-link{
+    color: black;
+}
+
+.navbar .custom-btn{
+    border-color: green !important;
+    color: green !important;
+}
+
+.event-head {
+    display: flex;
+    justify-content: space-between;
+}
+.event-head .event-full:hover svg{
+    transition: 0.3s ease;
+    height: 18px !important;
+}
+.c-vert{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
