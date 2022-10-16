@@ -28,10 +28,10 @@ return new class extends Migration
             $table->integer('roomcount')->default(0); //The number of people currently assigned;
 
             
-            $table->string('ticket')->default(''); //This is an array of json of [{ticket_id:, collect_state:, status:}] 
-
-            $table->string('role')->default(''); //Member or exco
-            $table->string('title')->default(''); 
+            $table->string('ticketstate')->default('0');
+            $table->string('ticketsharer')->default('1');
+            
+            $table->string('role')->default(''); 
 
             $table->timestamps();
         });

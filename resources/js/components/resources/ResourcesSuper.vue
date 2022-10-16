@@ -2,7 +2,9 @@
     <div style="padding: 10px; border-radius: 5px; background-color:white; margin: 20px 0" >
         <h5 class="mb-0 event-head" style="font-size: 28px; padding: 20px"> Event Resources </h5>
         
+
         <Resource v-for="r in upresources" :resource="r"/>
+        <div v-if="upresources.length == 0" style="padding:0px 20px"> No resource uploads for this event</div>
 
     </div>
 </template>

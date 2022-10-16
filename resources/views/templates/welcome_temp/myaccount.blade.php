@@ -2,6 +2,7 @@
 
 @section('moreheads')
     <link href="<?php echo asset('css\myaccount.css')?>" rel="stylesheet">    
+    <script src="<?php echo asset('js\myaccount.js')?>"></script>    
 @endsection('moreheads') 
 
 @section('content')
@@ -120,14 +121,14 @@
                                 </span>
                                 <div class="col-lg-12 col-12">
                                     <div class="form-floating">
-                                        <textarea class="form-control" id="message" name="message" placeholder="ddffrfe"></textarea>
+                                        <textarea class="form-control" id="message" name="message" placeholder="ddffrfe">{{$data->description}}</textarea>
                                         
                                         <label for="floatingTextarea">Description</label>
                                     </div>
                                 </div> 
 
                                 <div class="col-lg-3 col-12 ms-auto">
-                                    <div style="text-align:center" type="submit" class="form-control">Send</div>
+                                    <div style="text-align:center" id="submit" class="form-control">Update</div>
                                 </div>
 
                             </div>

@@ -1,6 +1,9 @@
 @extends ('layouts.base')
 
 @section('moreheads')
+
+
+
     @vite(['resources/js/app.js', 'resources/css/app.css'])
     
 @endsection('moreheads') 
@@ -13,7 +16,7 @@
                     <div class="hero-title-wrap d-flex align-items-center mb-4">
                         <img src="<?php echo asset('templateasset\welcome\images/nimeche_logo.jpg') ?>" class="avatar-image avatar-image-large img-fluid" alt="">
 
-                        <h1 class="hero-title ms-3 mb-0">Ojo Oluwagbenga John</h1>
+                        <h1 class="hero-title ms-3 mb-0">{{$data['name']}}</h1>
                     </div>                    
                 </div>
             </div> 
@@ -113,53 +116,8 @@
                 </div>
             </section>
 
-            <section class="contact section-padding connectssuper" id="section_5"  style="padding-bottom: 10px">
-                <div class="container">
-                    <div class="row">
-                        <h1 style="padding-bottom: 20px; margin: 10px;">
-                            Connect with new people!
-                        </h1>
-                        <span style="padding-bottom: 10px; color: grey; margin: 10px;">
-                            Below are short description of people that are with you in the conference.
-                            <br>Connect with as much as possible.<strong>You may add your own descriptions in your account page</strong>
-                        </span>
-
-                        <div class="col-lg-6 col-12 mt-5 mt-lg-0">
-                            <div class="row" style="padding: 10px; background-color: white; border-radius: 10px;margin: 10px;">
-                                <h5 style="padding-bottom: 20px">
-                                    Ojo Oluwagbenga John
-                                </h5>
-                                <span style="padding-bottom: 10px; color: grey">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, recusandae rerum? Blanditiis, possimus. Ut excepturi sequi placeat ratione nisi? Et autem obcaecati nisi? Libero quia repellat tenetur distinctio quaerat amet!
-                                </span>
-
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-12 mt-5 mt-lg-0">
-                            <div class="row" style="padding: 10px; background-color: white; border-radius: 10px;margin: 10px;">
-                                <h5 style="padding-bottom: 20px">
-                                    Ojo Oluwagbenga John
-                                </h5>
-                                <span style="padding-bottom: 10px; color: grey">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, recusandae rerum? Blanditiis, possimus. Ut excepturi sequi placeat ratione nisi? Et autem obcaecati nisi? Libero quia repellat tenetur distinctio quaerat amet!
-                                </span>
-
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-12 mt-5 mt-lg-0">
-                            <div class="row" style="padding: 10px; background-color: white; border-radius: 10px;margin: 10px;">
-                                <h5 style="padding-bottom: 20px">
-                                    Ojo Oluwagbenga John
-                                </h5>
-                                <span style="padding-bottom: 10px; color: grey">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione, recusandae rerum? Blanditiis, possimus. Ut excepturi sequi placeat ratione nisi? Et autem obcaecati nisi? Libero quia repellat tenetur distinctio quaerat amet!
-                                </span>
-
-                            </div>
-                        </div>
-
-                    </div>
-                </div>  
+            <section for="UsersaboutSuper" class="vueport contact section-padding connectssuper" id="section_5"  style="padding-bottom: 10px">
+                
             </section>
 
         </main>

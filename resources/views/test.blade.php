@@ -17,7 +17,7 @@
         $('div.init').click(function(){
             axios({
                 method: 'POST',
-                url: './api/event/addcomment',
+                url: './api/user/loadaccepts_token',
                 headers: {
                     "X-CSRF-TOKEN" : '{{csrf_token()}}'
                 },

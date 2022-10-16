@@ -22,23 +22,35 @@ class PagesController extends Controller{
     // Old English Text
     
     
-    public function manager($pagename){
+    public function manager(Request $request, $pagename){
         // return Util::Encode("vrbH", 4, 'int');
 
-        $ignore = ['eventdetail'];
-
-        if (in_array($pagename, $ignore)){
-            return 'Go Back Home!';
-        }
         
         $v = '';
 
+        $gen_data = $this->generalData($request);
+
+        $adminlimited = ['createevent', 'createticket'];
+
+        if (in_array($pagename, $adminlimited)){
+            if ($gen_data['access'] !== 'admin'){
+                return 'Not for children :)';
+            }
+        }
+
         try {
-            $v = view('templates.welcome_temp.'.$pagename);
+            $v = view('templates.welcome_temp.'.$pagename)->with('data',$gen_data);
         } catch (\Throwable $th) {
-            $v = view('templates.welcome_temp.dashboard');
+            $v = 'Page Not Found. Sure the url is correct?';
         }
         return $v;
+    }
+
+    private function generalData(Request $request){
+        return $data = array(
+            'access' => $request->session()->get('access', 'user'),
+        );
+
     }
 
     public function welcome(){
@@ -80,17 +92,63 @@ class PagesController extends Controller{
         $request->session()->flush();
         return redirect('/welcome');   
     }
-    public function eventdetails($code){
+
+    public function eventdetails(Request $request, $code){
         // v78R
         try{
             $id = (int) Util::Decode($code, 4, 'str');
             $model = ModelEvent::where(['id'=>$id])->first();
-            $model->code = $code;
+            if (!isset($model)){
+                return 'Incorrect page';
+            }
+            $model = $model->get()->toArray()[0];
+            $model['code'] = $code;
         }catch(\Illuminate\Database\QueryException $ex){ 
             return $ex;
         }
+        
+        $pdata = array_merge($this->generalData($request), $model );      
 
-        return view('templates.welcome_temp.eventdetail')->with('data',$model);        
+        return view('templates.welcome_temp.eventdetail')->with('data', $pdata);        
+    }
+
+    public function foodrequests(Request $request){
+
+        $allowed_sharers  = ['NCC/345/26'];//Proceed if in allowed else else reject
+
+        // $code = $request->session()->get('user', '');
+
+        // if (!in_array($code, $allowed_sharers)){
+        //     return 'Sure you are a sharer? See Admin';
+        // }
+        // $data = [
+        //     'sharer'=> array_search($code, $allowed_sharers),
+        // ];
+
+        // $data = array_merge($this->generalData($request), $data );    
+        
+        
+        $data = [
+            'sharer'=> 2,
+            'access'=> '',
+        ];
+
+        
+        try {
+            $v = view('templates.welcome_temp.foodrequests')->with('data',$data);      
+            return $v ; 
+        } catch (\Throwable $th) {
+            return 'Invalid Url';
+        }
+    }
+
+    public function dashboard(Request $request){
+
+        $pdata = $this->generalData($request);
+        $pdata['name'] = $request->session()->get('name', 'user');
+
+        return view('templates.welcome_temp.dashboard')->with('data',$pdata); 
+    
     }
         
 

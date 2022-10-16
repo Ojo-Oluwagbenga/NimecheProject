@@ -20,12 +20,14 @@ $(document).ready(function(){
                 },
                 data: coldata
             }).then(response => {
+                console.log(response);
                 const data = response.data;
                 $('#submit').text('Submit');
                 submit_clickable = true;  
 
-                console.log(response);
+                
                 if (data['response'] === 'passed'){
+                    popAlert("Successfully signed in, Redirecting...");
                     sessionStorage.setItem('user', data['data']['user']);
                     window.location.href = './dashboard';
                 }else{
@@ -41,7 +43,9 @@ $(document).ready(function(){
                             
                         }
                     }else{
-                        popAlert(data['reason']);
+                        if (data['reason'] === 'valerrorpop'){
+                            popAlert(data['data']);
+                        }
                     }
                 }
             })

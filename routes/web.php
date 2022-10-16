@@ -21,12 +21,12 @@ Route::get('/test', 'PagesController@test');
 Route::get('/', 'PagesController@welcome');
 Route::get('/logout', 'PagesController@logout');
 Route::get('/myaccount', 'PagesController@myaccount');
+Route::get('/dashboard', 'PagesController@dashboard');
+
+Route::get('/eventdetail/{code}', 'PagesController@eventdetails');
+Route::get('/foodrequests', 'PagesController@foodrequests');
 
 Route::get('/{pagename}', 'PagesController@manager');
-Route::get('/eventdetail/{code}', 'PagesController@eventdetails');
-
-
-
 
 //Api Routes
 

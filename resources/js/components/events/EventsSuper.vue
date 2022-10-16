@@ -1,6 +1,45 @@
 <template >
     <div class="container">
         <div class="row">
+            <div v-if="ticketdata.loading" class="col-lg-6 col-12" style="border-left: 3px solid red;padding-top:100px;border-right: 3px solid red;">
+                <div class="profile-thumb" >
+                    <div class="profile-title">
+                        <h4 class="mb-0 event-head">
+                            Checking for available Tickets...
+                        </h4>
+                    </div>
+                </div>
+            </div>
+
+            <div v-if="ticketdata.set" class="col-lg-6 col-12" style="border-left: 3px solid red;padding-top:100px;border-right: 3px solid red;">
+                <h5 v-if="ticketdata.userticketstate == 0"  id="sharerid" sh=1 style="padding:5px">Collecting from Sharer {{ticketdata.userticketsharer}}. <span style="color:blue;cursor:pointer" @click="togglesharer()" sh="1">Tap to change</span></h5>
+                <h5 v-if="ticketdata.userticketstate == 1"  id="sharerid" sh=1 style="padding:5px">Collect your package from Sharer {{ticketdata.userticketsharer}}.</h5>
+                <h5 v-if="ticketdata.userticketstate == 2"  id="sharerid" sh=1 style="padding:5px">Package Collected from sharer {{ticketdata.userticketsharer}} </h5>
+
+                <div class="profile-thumb">
+                    <div class="profile-title">
+                        <h4 class="mb-0 event-head">{{ticketdata.ticketname}}
+                            <div v-if="ticketdata.userticketstate == 0"  @click="acceptfood()" style="cursor:pointer" class="c-vert event-full">
+                                Collect
+                            </div>
+                        </h4>
+                    </div>
+
+                    <div class="profile-body">
+                        <p>
+                            <span class="profile-small-title">Code</span> 
+                            <span>{{ticketdata.usercode}}</span>
+                        </p>
+
+                        <p>
+                            <span class="profile-small-title">Name</span> 
+                            <span>{{ticketdata.username}}</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            
 
             <div class="col-lg-6 col-12 mt-5 mt-lg-0">
                 <div class="about-thumb">
@@ -40,68 +79,6 @@
 
             <Event v-for="event in current_events" :event="event"/> 
             <div class="noevt" v-if="current_events.length == 0">No event is currently ongoing. Catch some breeze!</div>
-            <!-- 
-            <div class="col-lg-6 col-12" style="margin: 20px 0">
-                <div class="profile-thumb">
-                    <div class="profile-title">
-                        <h4 class="mb-0">Technical Exhibition</h4>
-                    </div>
-
-                    <div class="profile-body">
-                        <p>
-                            <span class="profile-small-title">Date</span> 
-                            <span>Sat, Aug 10 2022</span>
-                        </p>
-
-                        <p>
-                            <span class="profile-small-title">Time</span> 
-                            <span>10:30am</span>
-                        </p>
-
-                        <p>
-                            <span class="profile-small-title">Duration</span> 
-                                <span><a href="#">3 hours</a></span>
-                        </p>
-
-                        <p>
-                            <span class="profile-small-title">Anchor</span> 
-                            <span><a href="#">Student Body</a></span>
-                        </p>
-                    </div>
-                </div>
-                
-            </div>
-            
-            <div class="col-lg-6 col-12" style="margin: 20px 0">
-                <div class="profile-thumb">
-                    <div class="profile-title">
-                        <h4 class="mb-0">Games</h4>
-                    </div>
-
-                    <div class="profile-body">
-                        <p>
-                            <span class="profile-small-title">Date</span> 
-                            <span>Sat, Aug 10 2022</span>
-                        </p>
-
-                        <p>
-                            <span class="profile-small-title">Time</span> 
-                            <span>10:30am</span>
-                        </p>
-
-                        <p>
-                            <span class="profile-small-title">Duration</span> 
-                                <span><a href="#">3 hours</a></span>
-                        </p>
-
-                        <p>
-                            <span class="profile-small-title">Anchor</span> 
-                            <span><a href="#">Student Body</a></span>
-                        </p>
-                    </div>
-                </div>
-                
-            </div> -->
 
         </div>
     </div>
@@ -138,20 +115,61 @@ export default {
 
     },
     methods:{
+        togglesharer(){
+            let k = this.ticketdata.userticketsharer
+            k = (k)%4;
+            this.ticketdata.userticketsharer = k+1;
+        },
+        acceptfood(){
+            popAlert('Collecting...');
+            let sharer = this.ticketdata.userticketsharer;
+            let tcode = this.ticketdata.ticketcode;
 
+            new Apimanager().queue_user_for_food(sessionStorage.getItem('user'), sharer, tcode, (resp) =>{
+                $("#sharerid").html("Get your package from sharer " + this.ticketdata.userticketsharer);
+                this.ticketdata.userticketstate = 1;
+                popAlert('Queued for collecting');
+            });
+            
+        },
+        activateTicket(){
+            popAlert('Activating');
+            let activtik = $('meta[name="ticket"]').attr('content');
+            new Apimanager().activate_ticket(activtik, (resp)=>{
+                popAlert('Activated');
+                this.adminticketstate = 1;
+            });
+        },
+        deleteTicket(){
+            popAlert('Activating');
+            let activtik = $('meta[name="ticket"]').attr('content');
+            new Apimanager().delete_ticket(activtik, (resp)=>{
+                popAlert('Activated');
+                this.adminticketstate = 1;
+                this.ticketon= false;
+            });
+        },
     },
     data(){
         return {
             future_events : [],
             current_events : [],
             past_events : [],
+
+            ticketdata:{
+                loading:true,
+                set:false
+            },
         }
     },
     mounted(){
 
     },
     created(){
-        new Apimanager().getallevents((resp)=>{
+
+        let mymanager = new Apimanager();
+
+        mymanager.getallevents((resp)=>{
             let allevents = resp.data;
             
             allevents.forEach(ev => {
@@ -167,7 +185,21 @@ export default {
                 
             });
             this.events = resp.data;
-        });        
+        });
+
+        mymanager.load_userticketdata((resp)=>{
+            console.log(resp);
+
+            this.ticketdata.loading = false;
+            let data = resp.data;
+            if (data.response === 'passed'){
+                this.ticketdata = {...data.data, set:true};
+                if (this.ticketdata.userticketsharer == null){
+                    this.ticketdata.userticketsharer = 1;
+                }
+                
+            }           
+        });
     },
 }
 </script> 

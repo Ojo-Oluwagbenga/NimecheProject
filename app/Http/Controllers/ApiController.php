@@ -9,6 +9,9 @@ use App\Models\Ticket as ModelTicket;
 use App\Models\User as ModelUser;
 use Illuminate\Support\Facades\DB;
 
+
+use App\Hash\JSymbols\JSymbol;
+
 class ApiController extends Controller{
 
     public function manager(Request $request, $class_name, $func_name){
@@ -46,7 +49,6 @@ class ApiController extends Controller{
         }
 
     }
-
     
 }
 
@@ -72,9 +74,9 @@ class Util{
         return $rtl;
     }
     public static function Decode($code, $encNum, $type){
-        $Res = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
-        if ($type == 'str'){
-            $Res = 'ZgBoFklNOaJKLM5XYh12pqr6wQRSTdefijAPbcU4mnVW0stuv78xyzGCDE3HI9';
+        $Res = 'ZgBoFklNOaJKLM5XYh12pqr6wQRSTdefijAPbcU4mnVW0stuv78xyzGCDE3HI9';
+        if ($type == 'int'){
+            $Res = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
         }  
         $tlenght = strlen($Res);
         $rtl = '';
@@ -98,8 +100,70 @@ class User{
         'institution' => ['required'],
         'role' => ['required'],
         'description' => ['min:10', 'max:255'],
-        'ticket' => ['min:10', 'max:255'],
+        'ticketstate' => [],
+        'ticketsharer' => [],
     ];
+
+    // private secrethash($txt){
+        
+    //     // Store the cipher method
+    //     $ciphering = "AES-128-CTR";
+        
+    //     // Use OpenSSl Encryption method
+    //     $iv_length = openssl_cipher_iv_length($ciphering);
+
+    //     $options = 0;
+        
+    //     // Non-NULL Initialization Vector for encryption
+    //     $encryption_iv = '1234567891011121';
+        
+    //     // Store the encryption key
+    //     $encryption_key = "GeeksforGeeks";
+        
+    //     // Use openssl_encrypt() function to encrypt the data
+    //     $encryption = openssl_encrypt($simple_string, $ciphering,
+    //     $encryption_key, $options, $encryption_iv);
+    // }
+    public function loadaccepts_token(){
+        $ret = [];
+        // for ($i=1912; $i < 12000; $i+=67) { 
+        //     array_push($ret, Util::Encode($i, 4, 'int'));
+        // }
+
+        $j = new JSymbol();
+
+        return json_encode($ret);
+    }
+    private function getIdByCode($code){
+        $idcode = end(explode("/", $code));
+        return Util::Decode($idcode, 4, 'int');
+    }
+    
+    public function getall_userabout($request){
+        $data = $request->all();
+
+
+        $model = ModelUser::select(['description', 'name'])->where('description', '!=','')->get();
+
+        if (count($model) === 0){
+            $ret = [
+                'response' => 'failed',
+                'reason' => 'valerror',
+                'data' => 'No Entry',
+            ];
+        }
+
+        $ret = [
+            'response' => 'passed',
+            'reason' => '',
+            'data' => $model,
+        ];
+
+        return json_encode($ret);
+                
+    }
+
+    
 
     public function addnew($request){
         $data = $request->all();
@@ -107,7 +171,21 @@ class User{
         $userallowed = ['2FD5', 'SH45'];
         $admin = ['admin'];
 
-        $validator = Validator::make($request->all(), [
+        $data['ticketsharer'] = '1';
+        $data['ticketstate'] = '0';
+
+        if (!in_array($data['code'], $userallowed)){
+            $ret = [
+                'response' => 'failed',
+                'reason' => 'valerror',
+                'data' => [
+                    'code'=>['Code does not exist']
+                ],
+            ];
+            return json_encode($ret);
+        }
+
+        $validator = Validator::make($data, [
             'name' => ['required', 'min:4', 'max:25', 'string'],
             'email' => ['required', 'email'],
             'password' => ['required', 'min:5', 'max:25'],
@@ -115,6 +193,8 @@ class User{
             'gender' => ['required'],
             'institution' => ['required'],
             'role' => ['required'],
+            'ticketstate' => [],
+            'ticketsharer' => [],
         ]); 
         if ($validator->fails()) {
             $ret = [
@@ -146,14 +226,14 @@ class User{
             return json_encode($ret);
         }
 
-        
-
-        $usersinroom = ModelUser::select('roomid', 'roomcount')->where(['institution' => $data['institution'], 'gender' => $data['gender']])->get();
+        $usersinroom = ModelUser::select('roomid', 'roomcount')->where(  [ ['institution', $data['institution']] , ['gender' => $data['gender']] ]  )->get();
 
         
         $uroom = $this->getRoom($usersinroom, $data['gender']);
         
         $user = new ModelUser;
+        $uid = (int) getIdByCode($data['code']);
+
 
         $user->name = $data['name'];
         $user->email = $data['email'];
@@ -165,9 +245,9 @@ class User{
         $user->roomid = $uroom[0]; 
         $user->bunknumber = $uroom[1]+1;
         $user->roomcount = $uroom[2]+1;
-        $user->ticket = json_encode([]);
         $user->role = isset($data['role']) ? $data['role']: 'member';
-        $user->title = isset($data['title']) ? $data['title']: 'member';
+        $user->ticketstate = '0';
+        $user->ticketsharer = (string) ($uid%4 + 1);
         
         try{
             $user->save();
@@ -182,8 +262,9 @@ class User{
         
         
         if (isset($data['redir'])){
-            $this->startsession($request, $data['code']);
+            $this->startsession($request, $data['code'], $data['name']);
         }
+
         $type = 'Admin';
         // if code is in user allowed type will  be Member
         $ret = [
@@ -249,8 +330,8 @@ class User{
         if (count($user) === 0){
             $ret = [
                 'response' => 'failed',
-                'reason' => 'User not found',
-                'data' => '',
+                'reason' => 'valerrorpop',
+                'data' => 'User not found',
             ];
             return json_encode($ret);
         }
@@ -320,10 +401,18 @@ class User{
             ];
             return json_encode($ret); 
         }        
+
+        
         
         try{
-            $user = ModelUser::select('code')->where(['code' => $data['emailorcode'], 'password' => $data['password']])->orWhere(['email' => $data['emailorcode'], 'password' => $data['password']])->get();
-    
+            $user = ModelUser::select(['code', 'name'])->where([
+                                                ['code', $data['emailorcode']], 
+                                                ['password', $data['password']] 
+                                            ])->orWhere([ 
+                                                ['email', $data['emailorcode']],
+                                                ['password', $data['password']] 
+                                            ])->first();
+
         }catch(\Illuminate\Database\QueryException $ex){ 
             $ret = [
                 'response' => 'failed',
@@ -333,22 +422,24 @@ class User{
             return json_encode($ret);
         }
         
-        if (count($user) === 0){
+
+        if (!isset($user)){
             $ret = [
                 'response' => 'failed',
-                'reason' => 'User not found',
-                'data' => '',
+                'reason' => 'valerrorpop',
+                'data' => 'User not found',
             ];
             return json_encode($ret);
         }
         
         if (isset($data['redir'])){
-            $this->startsession($request, $data['code']);
+            $this->startsession($request, $user['code'], $user['name']);
         }
+
         $ret = [
             'response' => 'passed',
             'data' => [
-                'user' =>  $data['code']
+                'user' =>  $user['code']
             ],
         ];
         return json_encode($ret);
@@ -396,9 +487,14 @@ class User{
         return $ret;
     }
 
-    public function startsession($request, $ucode){
+    public function startsession($request, $ucode, $name){
         $request->session()->flush();
         $request->session()->put('user', $ucode);
+        $request->session()->put('name', $name);
+
+        if ($ucode == 'admincode'){
+            $request->session()->put('access', 'admin');
+        }
                 
     }
     
@@ -410,7 +506,6 @@ class User{
 
 class Event{
 
-
     private $valset =  [
         'name' => ['required', 'min:4', 'max:25', 'string'],
         'description' => ['required', 'min:4', 'max:511'],
@@ -421,6 +516,7 @@ class Event{
         'duration' => ['required'],
         'anchor' => ['required'],
         'thoughts' => [],
+        'state' => [],
     ];
 
     public function addnew($request){
@@ -433,8 +529,7 @@ class Event{
         foreach($createset as $key => $val){
             if (!isset($this->valset[$key])){
                 unset($createset[$key]);
-            }
- 
+            } 
         }
 
         $validator = Validator::make($createset, $this->valset);
@@ -729,17 +824,22 @@ class Ticket{
 
     private $valset =  [
         'name' => ['required', 'min:4', 'max:25', 'string'],
-        'package' => ['required', 'min:4', 'max:511'],
         'status' => ['required'],
         'user_qeued' => ['required'],
         'user_accepted' => ['required'],
-        'user_rejected' => ['required'],
     ];
-
+ 
     public function addnew($request){
         $data = $request->all();
 
-        $createset = ($data['createset']);
+        $createset = $data['createset'];
+
+        // return 'calling';
+        $createset['user_qeued'] = '{}';
+        
+        $createset['user_accepted'] = '{}';
+        $createset['package'] = '{}';
+        $createset['status'] = 1;
         
         $updvaller = [];
 
@@ -759,13 +859,18 @@ class Ticket{
             return json_encode($ret);
         }
        
-        $model = new ModelTicket;
-
-        foreach($createset as $key => $val){
-            $model->$key = $val;
-        }
+        
         
         try{
+            //Activate other user ticket to 0 and deactivate all other tickets 
+            ModelUser::query()->update(['ticketstate' => 0]);
+            ModelTicket::query()->update(['status' => 2]);
+            $model = new ModelTicket;
+
+            foreach($createset as $key => $val){
+                $model->$key = $val;
+            }
+
             $model->save();
         }catch(\Illuminate\Database\QueryException $ex){ 
             $ret = [
@@ -786,6 +891,183 @@ class Ticket{
         
     }
 
+    public function queue_user($request){
+        $data = $request->all();
+
+ 
+        $user = ($data['usercode']);
+        $sharer = ($data['sharer']);
+        $ticketid = Util::Decode(($data['ticketcode']), 4, 'str');
+
+        // return json_encode($user);
+        $usermod = ModelUser::where('code', $user)->first();
+
+       
+
+        
+        if ($usermod->ticketstate === '1'){            
+            $ret = [
+                'response' => 'passed',
+                'reason' => 'User is queuing',
+                'data' => '',
+            ];
+            return json_encode($ret);
+        }
+        if ($usermod->ticketstate === '2'){            
+            $ret = [
+                'response' => 'passed',
+                'reason' => 'User has collected',
+                'data' => '',
+            ];
+            return json_encode($ret);
+        }
+
+        // Gets the active ticket
+        $model = ModelTicket::where(['id' => $ticketid, 'status'=>1])->first();
+
+        if (!isset($model)){
+            $ret = [
+                'response' => 'failed',
+                'reason' => 'Ticket not found or has expired',
+                'data' => '',
+            ];
+            return json_encode($ret);
+        }
+        
+        $queuser = (array) json_decode($model['user_qeued']);
+
+        $cc = count($queuser);
+        $queuser[$cc+1] = [
+            'user'=>$user, 
+            'sharer'=>$sharer,
+        ];
+        $model->user_qeued = json_encode($queuser);
+
+        try {
+            $usermod->ticketstate = 1;
+            $usermod->ticketsharer = $sharer;
+
+            $usermod->save();
+            $model->save();            
+
+            $ret = [
+                'response' => 'passed',
+                'reason' => '',
+                'data' => 'User queued on sharer '.$sharer,
+            ];
+            return json_encode($ret);
+        } catch (\Throwable $th) {
+            $ret = [
+                'response' => 'failed',
+                'reason' => $th->getMessage(),
+                'data' => '',
+            ];
+            return json_encode($ret);
+        }
+        
+
+    }
+
+    public function get_all_req_users($request){
+        $data = $request->all();
+
+        $sharer =  $data['sharer'];
+
+
+        //Get List of all user uner shaerer
+        $users = ModelUser::select(['code', 'name', 'ticketstate', 'ticketsharer'])->where('ticketsharer', $sharer)->get();
+        
+        if (count($users) === 0){
+            $ret = [
+                'response' => 'failed',
+                'reason' => 'empty query',
+                'data' => 'No User set for you',
+            ];
+            return json_encode($ret);
+        }
+
+        $ret = [
+            'response' => 'passed',
+            'reason' => '',
+            'data' => $users,
+        ];
+        return json_encode($ret);
+                
+    }
+
+    public function grant_req_user($request){
+        $data = $request->all();
+
+        $sharer =  $data['sharer'];
+        $user =  $data['user'];
+
+        $users = ModelUser::where(['ticketsharer'=>$sharer])->where(['code'=>$user])->first();
+
+        if (!isset($users)){
+            $ret = [
+                'response' => 'failed',
+                'reason' => 'valerrorpop',
+                'data' => 'User not found',
+            ];
+            return json_encode($ret);
+        }
+        
+        $users->ticketstate = '2';
+        // return 'hey';
+
+        $users->save();
+
+        $ret = [
+            'response' => 'passed',
+            'reason' => '',
+            'data' => 'User attended to successfully',
+        ];
+        return json_encode($ret);
+
+    }
+
+    public function load_userticketdata($request){
+        $data = $request->all();
+
+        $ucode =  $data['user'];
+        
+        
+        $user = ModelUser::select(['name', 'ticketstate','ticketsharer', 'code'])->where(['code'=>$ucode])->first();
+
+        //Get the name of the active ticket;
+        $ticket = ModelTicket::select(['name', 'id'])->where(['status'=>1])->first();
+        
+
+       
+        if (!isset($ticket) || !isset($user)){
+            $ret = [
+                'response' => 'failed',
+                'reason' => 'empty query',
+                'data' => 'No Ticket is available for you',
+            ];
+            return json_encode($ret);
+        }
+
+        $retdata = [
+            'ticketname' => $ticket->name,
+            'ticketcode' => Util::Encode($ticket->id, 4, 'str'),
+            'username' =>$user->name,
+            'usercode' =>$user->code,
+            'userticketstate' => $user->ticketstate,
+            'userticketsharer' =>$user->ticketsharer,
+        ];
+
+        $ret = [
+            'response' => 'passed',
+            'reason' => '',
+            'data' => $retdata,
+        ];
+        return json_encode($ret);
+                
+    }
+
+    
+
     public function update($request){
         $data = $request->all();
 
@@ -794,6 +1076,12 @@ class Ticket{
         $updpair = ($data['updpair']);
 
         unset($updset['id']);
+
+        if ($updpair[0] == 'code'){
+
+            $updpair[1] = Util::Decode($updpair[1], 4, 'str');
+            $updpair[0] = 'id';   
+        }
 
         $updvaller = [];
 
@@ -856,7 +1144,7 @@ class Ticket{
         $ret = [
             'response' => 'passed',
             'data' => [
-                'user' =>   $model->id
+                'ticketcode' => Util::Encode($model->id, 4, 'str')
             ],
         ];
         return json_encode($ret);

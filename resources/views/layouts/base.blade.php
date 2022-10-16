@@ -28,6 +28,8 @@
         <meta name="_token" content="{{ csrf_token() }}">
         
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  
+
+        <script src="<?php echo asset('templateasset\welcome\js/jquery.min.js')?> "></script>
         
         @yield('moreheads')
 
@@ -93,33 +95,25 @@
                             <a class="nav-link click-scroll" href="/dashboard" style="margin-bottom:20px">Dashboard</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="/createevent" style="margin-bottom:20px">Create event</a>
-                        </li>
+                        
+                        
+
+                        @if($data['access']=='admin')
+                            <li class="nav-item">
+                                <a class="nav-link" href="/createevent" style="margin-bottom:20px">Create event</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/foodcreate" style="margin-bottom:20px">Create Ticket</a>
+                            </li>
+                        @endif
+
 
                         <li class="nav-item">
                             <a class="nav-link" href="/logout" style="margin-bottom:20px">Log out</a>
                         </li>
-                        <!-- 
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_3">Timeline</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_4">Excos</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_5">Contact</a>
-                        </li> -->
+                        
                     </ul>
-
-                    <!-- <div class="d-lg-flex align-items-center d-none ms-auto">
-                        <a class="custom-btn btn" href="/myaccount">
-                            My Account
-                        </a>
-                    </div> -->
+                    
                 </div>
 
                 <div class="d-flex align-items-center d-lg-none">
@@ -129,27 +123,7 @@
                 </div>
 
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <!-- <ul class="navbar-nav ms-lg-5">
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_1">Home</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_2">Event Guide</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_3">Timeline</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_4">Excos</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_5">Contact</a>
-                        </li>
-                    </ul> -->
+                    
 
                     <div class="d-lg-flex align-items-center d-none ms-auto">
                         <a class="custom-btn btn" href="/myaccount">
@@ -172,6 +146,7 @@
                             <p class="mb-0">
                                 <span class="copyright-text">Copyright © 2022 <a href="#"> NiMechE student </a></span> 
                                 <br>
+                                
                                 All rights reserved.
                                 
                             </p>
@@ -183,7 +158,6 @@
         </footer>
 
         <!-- JAVASCRIPT FILES -->
-        <script src="<?php echo asset('templateasset\welcome\js/jquery.min.js')?> "></script>
         <script src="<?php echo asset('templateasset\welcome\js/bootstrap.min.js')?> "></script>
         <script src="<?php echo asset('templateasset\welcome\js/jquery.sticky.js')?> "></script>
         <script src="<?php echo asset('templateasset\welcome\js/click-scroll.js')?> "></script>

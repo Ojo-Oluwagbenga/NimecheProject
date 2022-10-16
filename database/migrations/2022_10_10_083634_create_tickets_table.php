@@ -15,13 +15,11 @@ return new class extends Migration
     {
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('package');//This is the package to be delivered eg Rice and Fried Fish
-            $table->integer('status');
+            $table->string('name')->default();
+            $table->integer('status')->default();
             
             $table->json('user_qeued');
             $table->json('user_accepted');
-            $table->json('user_rejected');
             $table->timestamps();
         });
     }

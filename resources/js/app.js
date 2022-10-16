@@ -3,6 +3,8 @@ import { createApp } from "vue";
 import EventsSuper from "./components/events/EventsSuper.vue";
 import CommentsSuper from "./components/comments/CommentsSuper.vue";
 import ResourcesSuper from "./components/resources/ResourcesSuper.vue";
+import FoodrequestsSuper from "./components/foodrequests/FoodrequestsSuper.vue";
+import UsersaboutSuper from "./components/usersabout/UsersaboutSuper.vue";
 import Apimanager from './Utils/Apimanager.js';
 import Statemanager from './Utils/Statemanager.js';
 
@@ -18,6 +20,8 @@ let Mycomponents = {
     EventsSuper:EventsSuper,
     CommentsSuper:CommentsSuper,
     ResourcesSuper:ResourcesSuper,
+    FoodrequestsSuper:FoodrequestsSuper,
+    UsersaboutSuper:UsersaboutSuper,
 }
 
 let vmodule = $('.vueport');

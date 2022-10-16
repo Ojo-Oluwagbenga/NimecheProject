@@ -1,7 +1,7 @@
 @extends ('layouts.base')
 
 @section('moreheads')
-    <meta name="pagecode" content="{{$data->code}}">
+    <meta name="pagecode" content="{{$data['code']}}">
     @vite(['resources/js/app.js', 'resources/css/app.css'])
     
 @endsection('moreheads') 
@@ -13,7 +13,7 @@
                 <div class="row" style="border-bottom: 1px dashed green; justify-content: right;">
                     <div class="col-lg-7 col-12">
                         <div class="">
-                            <h1 style="font-weight:1000;text-align: right;font-size: 25px;letter-spacing:4px">{{$data->name}}</h1>               
+                            <h1 style="font-weight:1000;text-align: right;font-size: 25px;letter-spacing:4px">{{$data['name']}}</h1>               
                             <style>
                                 @media screen and (max-width: 480px){
                                     .featured{
@@ -37,7 +37,7 @@
                             </div>
 
                             <div class="profile-body" style="padding: 20px">
-                                {{$data->description}}
+                                {{$data['description']}}
                             </div>
                         </div>
                         
@@ -56,22 +56,22 @@
                             <div class="profile-body">
                                 <p>
                                     <span class="profile-small-title">Date</span> 
-                                    <span>{{$data->date}}</span>
+                                    <span>{{$data['date']}}</span>
                                 </p>
 
                                 <p>
                                     <span class="profile-small-title">Time</span> 
-                                    <span>{{$data->time}}</span>
+                                    <span>{{$data['time']}}</span>
                                 </p>
 
                                 <p>
                                     <span class="profile-small-title">Duration</span> 
-                                        <span><a href="#">{{$data->duration}}</a></span>
+                                        <span><a href="#">{{$data['duration']}}</a></span>
                                 </p>
 
                                 <p>
                                     <span class="profile-small-title">Anchor</span> 
-                                    <span><a href="#">{{$data->anchor}}</a></span>
+                                    <span><a href="#">{{$data['anchor']}}</a></span>
                                 </p>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                             </div>
 
                             <div class="profile-body" style="padding: 20px">
-                                {{$data->location}}
+                                {{$data['location']}}
                             </div>
                         </div>
                         
@@ -96,18 +96,19 @@
             </div>
         </section>
 
-        <section class="section-padding" style="padding-top: 150px;">
-            <div class="container" style="overflow-x:scroll">
-                <div class="evstatus">
-                    <h3 class="c-vert name">Status</h3>
-                    <div state="2" style="background-color:black" class="c-vert stat">Done</div>
-                    <div state="1" style="background-color:green" class="c-vert stat">Start</div>
-                    <div state="0" style="background-color:#d7d705" class="c-vert stat">Queue</div>
-                    <div state="3" style="background-color:red" class="c-vert stat">Del</div>
+        @if($data['access']=='admin')
+            <section class="section-padding" style="padding-top: 150px;">
+                <div class="container" style="overflow-x:scroll">
+                    <div class="evstatus">
+                        <h3 class="c-vert name">Status</h3>
+                        <div state="2" style="background-color:black" class="c-vert stat">Done</div>
+                        <div state="1" style="background-color:green" class="c-vert stat">Start</div>
+                        <div state="0" style="background-color:#d7d705" class="c-vert stat">Queue</div>
+                        <div state="3" style="background-color:red" class="c-vert stat">Del</div>
+                    </div>
                 </div>
-            </div>
-        </section>
-
+            </section>
+        @endif                                
         
 
         <section for="CommentsSuper" id="section_5" class="contact section-padding vueport">
