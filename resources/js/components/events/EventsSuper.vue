@@ -188,8 +188,6 @@ export default {
         });
 
         mymanager.load_userticketdata((resp)=>{
-            console.log(resp);
-
             this.ticketdata.loading = false;
             let data = resp.data;
             if (data.response === 'passed'){

@@ -253,7 +253,7 @@ export default class Apimanager{
                 
             },
         }).then(response => {
-            console.log(response);
+            
             if (response.data.response === 'passed'){
                 func(response); 
             }else{

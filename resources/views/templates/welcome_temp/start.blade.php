@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-        <title>Nimeche Student</title>
+        <title>NIMechE Student</title>
         <link rel="icon" type="image/png" href="<?php echo asset('templateasset\welcome\images/nimeche_logo.jpg')?> "/>
 
         <!-- CSS FILES -->
@@ -87,7 +87,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <a style="color:black" class="navbar-brand mx-auto mx-lg-0">NiMeche Students</a>
+                <a style="color:black" class="navbar-brand mx-auto mx-lg-0">NIMechE Students</a>
 
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-lg-5">
@@ -116,7 +116,10 @@
                                 <strong class="site-footer-title d-block mb-3">About </strong>
 
                                 <p class="mb-2">
-                                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam mollitia deleniti eveniet nisi aliquam enim laboriosam est consequuntur, earum vel animi labore officia inventore error quae facilis provident ab. Ex quisquam tempora impedit. Esse dolore in hic praesentium, natus aliquid. Laborum assumenda natus aliquid eius facilis ipsum ad sint numquam.
+                                    This is where the exploration starts from. Enter the access token that was assigned to you on registration in the space provided. <br>
+                                    Ensure that all information provided here is correct as you may go an extra stress correcting them later.
+
+                                    <br><br> Your registrant details which includes your accommodation details, Registrant code will be generated for you. Visit your account after sign in to access all neccessary information.
                                 </p>
 
                             </div>
@@ -347,7 +350,7 @@
                     <div class="col-lg-12 col-12">
                         <div class="copyright-text-wrap">
                             <p class="mb-0">
-                                <span class="copyright-text">Copyright © 2022 <a href="#"> NiMechE student </a></span> 
+                                <span class="copyright-text">Copyright © 2022 <a href="#"> NIMechE student </a></span> 
                                 <br>
                                 All rights reserved.
                                 

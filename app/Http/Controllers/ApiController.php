@@ -136,6 +136,7 @@ class User{
         
         return json_encode($ret);
     }
+    
     private function getIdByCode($code){
         $idcode = end(explode("/", $code));
         return Util::Decode($idcode, 4, 'int');
@@ -513,7 +514,7 @@ class User{
         $request->session()->put('user', $ucode);
         $request->session()->put('name', $name);
 
-        if ($ucode == 'admincode'){
+        if ($ucode == 'NC/2022/DEFG'){
             $request->session()->put('access', 'admin');
         }
                 

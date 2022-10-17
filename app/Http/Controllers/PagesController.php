@@ -155,8 +155,7 @@ class PagesController extends Controller{
             'sharer'=> 2,
             'access'=> '',
         ];
-
-        
+                
         try {
             $v = view('templates.welcome_temp.foodrequests')->with('data',$data);      
             return $v ; 

@@ -116,7 +116,9 @@
                                     <strong class="site-footer-title d-block mb-3">About </strong>
 
                                     <p class="mb-2">
-                                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam mollitia deleniti eveniet nisi aliquam enim laboriosam est consequuntur, earum vel animi labore officia inventore error quae facilis provident ab. Ex quisquam tempora impedit. Esse dolore in hic praesentium, natus aliquid. Laborum assumenda natus aliquid eius facilis ipsum ad sint numquam.
+                                        Use your email or the generated registrant code with the password to access your dashboard.
+                                        <br><br>
+                                        Forgot your password? Reach out to a member of the management team for retrieval.
                                     </p>
 
                                 </div>

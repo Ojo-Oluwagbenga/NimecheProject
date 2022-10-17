@@ -760,8 +760,8 @@ strong {
 }
 
 .projects-tag {
-  font-size: var(--menu-font-size);
-  font-weight: var(--font-weight-medium);
+  font-size: 18px;
+  font-weight: normal;
   color: var(--secondary-color);
   text-transform: uppercase;
   margin-bottom: 5px;

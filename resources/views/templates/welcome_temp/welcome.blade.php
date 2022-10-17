@@ -131,14 +131,24 @@
 
                                 <h3 class="pt-2 mb-3">A glimpse to the events</h3>
 
-                                <p style="padding:10px">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis ab quaerat id totam laudantium pariatur corrupti reiciendis fugiat vitae cupiditate numquam officiis minima sunt hic consequatur quisquam, rerum esse aliquam?</p>
+                                <p style="padding:10px">
+                                    The Nigerian Institution of Mechanical Engineers
+                                    ( A division of The Nigerian Society of Engineers)
+                                    National Students' Forum welcomes you to the 35th International Conference & Annual General Meeting.
+                                   <br><br>
+                                    The event aims at educating on <strong>The Impact of digitalization on mechanical engineering.</strong> We hope you get the best out of every moment of the event. Stay connected.
+                                </p>
                             </div>
                             
                         </div>
                         <div class="about-thumb more-det" style="width: 50%;">
                             <h3 class="pt-2 mb-3">Basic Instructions</h3>
 
-                            <p style="padding:10px">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis ab quaerat id totam laudantium pariatur corrupti reiciendis fugiat vitae cupiditate numquam officiis minima sunt hic consequatur quisquam, rerum esse aliquam?</p>
+                            <p style="padding:10px">
+                                To ensure better running of the AGM program. We delightly introduce you to the conference website.
+                                The website caters for each attendees room number and meal tickets.
+                                We urge every attendee of this years conference to onboard their details to the site.
+                            </p>
                         </div>
 
                     </div>
@@ -166,13 +176,13 @@
                         <div class="col-lg-4 col-md-6 col-12">
                             <div class="projects-thumb">
                                 <div class="projects-info">
-                                    <small class="projects-tag">President</small>
+                                    <small class="projects-tag">NSF President</small>
 
-                                    <h3 class="projects-title">Adekunle Johnson</h3>
+                                    <h3 class="projects-title">Abuh Rasheed ENECHEJO</h3>
                                 </div>
 
-                                <a href="<?php echo asset('templateasset\welcome\images/projects/nikhil-KO4io-eCAXA-unsplash.jpg') ?>" class="popup-image">
-                                    <img src="<?php echo asset('templateasset\welcome\images/exco.png') ?>" class="projects-image img-fluid" alt="">
+                                <a href="<?php echo asset('templateasset\welcome\images/v-rasheed.jpg') ?>" class="popup-image">
+                                    <img src="<?php echo asset('templateasset\welcome\images/v-rasheed.jpg') ?>" class="projects-image img-fluid" alt="">
                                 </a>
                             </div>
                         </div>
@@ -180,13 +190,13 @@
                         <div class="col-lg-4 col-md-6 col-12">
                             <div class="projects-thumb">
                                 <div class="projects-info">
-                                    <small class="projects-tag">Student Representative</small>
+                                    <small class="projects-tag">NSF General Secretary</small>
 
-                                    <h3 class="projects-title">Omoloye Samuel</h3>
+                                    <h3 class="projects-title">Akinwale Oluwadamilare Elijah</h3>
                                 </div>
 
-                                <a href="<?php echo asset('templateasset\welcome\images/projects/the-5th-IQYR7N67dhM-unsplash.jpg') ?>" class="popup-image">
-                                    <img src="<?php echo asset('templateasset\welcome\images/projects/the-5th-IQYR7N67dhM-unsplash.jpg') ?>" class="projects-image img-fluid" alt="">
+                                <a href="<?php echo asset('templateasset\welcome\images/v-elijah.jpg') ?>" class="popup-image">
+                                    <img src="<?php echo asset('templateasset\welcome\images/v-elijah.jpg') ?>" class="projects-image img-fluid" alt="">
                                 </a>
                             </div>
                         </div>
@@ -194,13 +204,13 @@
                         <div class="col-lg-4 col-md-6 col-12">
                             <div class="projects-thumb">
                                 <div class="projects-info">
-                                    <small class="projects-tag">President</small>
+                                    <small class="projects-tag">NSF Welfare Secretary</small>
 
-                                    <h3 class="projects-title">Adekunle Johnson</h3>
+                                    <h3 class="projects-title">Na'allah VICTOR Tychicus</h3>
                                 </div>
 
-                                <a href="<?php echo asset('templateasset\welcome\images/projects/nikhil-KO4io-eCAXA-unsplash.jpg') ?>" class="popup-image">
-                                    <img src="<?php echo asset('templateasset\welcome\images/exco.png') ?>" class="projects-image img-fluid" alt="">
+                                <a href="<?php echo asset('templateasset\welcome\images/v-victor.jpg') ?>" class="popup-image">
+                                    <img src="<?php echo asset('templateasset\welcome\images/v-victor.jpg') ?>" class="projects-image img-fluid" alt="">
                                 </a>
                             </div>
                         </div>
@@ -208,32 +218,71 @@
                         <div class="col-lg-4 col-md-6 col-12">
                             <div class="projects-thumb">
                                 <div class="projects-info">
-                                    <small class="projects-tag">Student Representative</small>
+                                    <small class="projects-tag">NSF Treasurer</small>
 
-                                    <h3 class="projects-title">Omoloye Samuel</h3>
+                                    <h3 class="projects-title">NUMBE A. Godwin</h3>
                                 </div>
 
-                                <a href="<?php echo asset('templateasset\welcome\images/projects/the-5th-IQYR7N67dhM-unsplash.jpg') ?>" class="popup-image">
-                                    <img src="<?php echo asset('templateasset\welcome\images/projects/the-5th-IQYR7N67dhM-unsplash.jpg') ?>" class="projects-image img-fluid" alt="">
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-6 col-12">
-                            <div class="projects-thumb">
-                                <div class="projects-info">
-                                    <small class="projects-tag">President</small>
-
-                                    <h3 class="projects-title">Adekunle Johnson</h3>
-                                </div>
-
-                                <a href="<?php echo asset('templateasset\welcome\images/projects/nikhil-KO4io-eCAXA-unsplash.jpg') ?>" class="popup-image">
-                                    <img src="<?php echo asset('templateasset\welcome\images/exco.png') ?>" class="projects-image img-fluid" alt="">
+                                <a href="<?php echo asset('templateasset\welcome\images/v-godwin.jpg') ?>" class="popup-image">
+                                    <img src="<?php echo asset('templateasset\welcome\images/v-godwin.jpg') ?>" class="projects-image img-fluid" alt="">
                                 </a>
                             </div>
                         </div>
                         
-                        
+                          
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="projects-thumb">
+                                <div class="projects-info">
+                                    <small class="projects-tag">NSF Publicity Secretary</small>
+
+                                    <h3 class="projects-title">ADAMS Muhammad</h3>
+                                </div>
+
+                                <a href="<?php echo asset('templateasset\welcome\images/v-adams.jpg') ?>" class="popup-image">
+                                    <img src="<?php echo asset('templateasset\welcome\images/v-adams.jpg') ?>" class="projects-image img-fluid" alt="">
+                                </a>
+                            </div>
+                        </div>   
+
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="projects-thumb">
+                                <div class="projects-info">
+                                    <small class="projects-tag">NSF MEMBERSHIP SECRETARY</small>
+
+                                    <h3 class="projects-title">SULAIMAN Shehu</h3>
+                                </div>
+
+                                <a href="<?php echo asset('templateasset\welcome\images/v-shehu.jpg') ?>" class="popup-image">
+                                    <img src="<?php echo asset('templateasset\welcome\images/v-shehu.jpg') ?>" class="projects-image img-fluid" alt="">
+                                </a>
+                            </div>
+                        </div>   
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="projects-thumb">
+                                <div class="projects-info">
+                                    <small class="projects-tag">NSF Editor-in-Chief</small>
+
+                                    <h3 class="projects-title">DAVID Echefulam Echendu</h3>
+                                </div>
+
+                                <a href="<?php echo asset('templateasset\welcome\images/v-david.jpg') ?>" class="popup-image">
+                                    <img src="<?php echo asset('templateasset\welcome\images/v-david.jpg') ?>" class="projects-image img-fluid" alt="">
+                                </a>
+                            </div>
+                        </div>   
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <div class="projects-thumb">
+                                <div class="projects-info">
+                                    <small class="projects-tag">NSF SYSTEM ARCHITECT AND DEVELOPER</small>
+
+                                    <h3 class="projects-title">JOHN O. Oluwagbenga</h3>
+                                </div>
+
+                                <a href="<?php echo asset('templateasset\welcome\images/v-john.jpg') ?>" class="popup-image">
+                                    <img src="<?php echo asset('templateasset\welcome\images/v-john.jpg') ?>" class="projects-image img-fluid" alt="">
+                                </a>
+                            </div>
+                        </div> 
 
                     </div>
                 </div>
