@@ -10,7 +10,7 @@ export default class Apimanager{
                 "X-CSRF-TOKEN" : $('meta[name="_token"]').attr('content')
             },
             data: {
-                querypair:{'id':8},
+                querypair:{'code':eventcode},
                 fetchset:['resources']
             },
         }).then(response => {

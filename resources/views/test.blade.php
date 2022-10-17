@@ -26,7 +26,7 @@
                     fetchset:['name']
 
                 }
-            }).then(response => {console.log(response)})
+            }).then(response => {console.log(response.data)})
                 .catch(error => console.error(error))
         })
                

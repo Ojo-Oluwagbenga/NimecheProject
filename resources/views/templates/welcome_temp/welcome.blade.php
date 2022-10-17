@@ -49,7 +49,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <a class="navbar-brand mx-auto mx-lg-0">NiMeche Student</a>
+                <a class="navbar-brand mx-auto mx-lg-0">NIMechE Student</a>
 
 
                 <div class="collapse navbar-collapse" id="navbarNav">
@@ -91,12 +91,15 @@
                                 <div class="hero-title-wrap d-flex align-items-center mb-4">
                                     <img src="<?php echo asset('templateasset\welcome\images/nimeche_logo.jpg') ?>" class="avatar-image avatar-image-large img-fluid" alt="">
 
-                                    <h1 class="hero-title ms-3 mb-0">Welcome to the</h1>
+                                    <h1 class="hero-title ms-3 mb-0">Welcome!</h1>
                                 </div>
 
-                                <h2 class="mb-4">NiMeche 35th General Conference</h2>
-                                <p class="mb-4"><a class="custom-btn btn custom-link" href="/start">Start here</a></p>
-                                <p class="mb-4"><a class="custom-btn btn custom-link" href="/login">Login</a></p>
+                                <h2 class="mb-4">35th International Conference & Annual General Meeting</h2>
+                                
+                                <div class="authhold">
+                                    <p class="mb-4"><a class="custom-btn btn custom-link" href="/start">Start here</a></p>
+                                    <p class="mb-4"><a class="custom-btn btn custom-link" href="/login">Login</a></p>
+                                </div>
                             </div>
                         </div>
 

@@ -990,6 +990,18 @@ form .error{
   color: var(--white-color);
 }
 
+.authhold{
+  display: flex;
+}
+.authhold .mb-4{
+  margin: 0px 10px;
+  min-width: max-content;
+  width: 110px;
+}
+.authhold .mb-4 :nth-child(n){
+  width: 100%;
+}
+
 
 /*---------------------------------------
   RESPONSIVE STYLES               
@@ -1162,6 +1174,12 @@ form .error{
   .hero h2{
     font-size: 32px;
   }
+  .custom-btn,
+  .navbar .custom-btn {
+    font-size: 16px;
+    padding: 6px 12px;
+  }
+
 }
 
 @media screen and (max-width: 480px) {
@@ -1185,11 +1203,7 @@ form .error{
     font-size: 20px;
   }
 
-  .custom-btn,
-  .navbar .custom-btn {
-    font-size: 13px;
-    padding: 6px 12px;
-  }
+  
 
   .navbar-icon {
     font-size: var(--copyright-font-size);

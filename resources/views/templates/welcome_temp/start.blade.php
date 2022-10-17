@@ -127,9 +127,9 @@
                                 <div id="code" class="">
                                     <!-- <div class="error">Jey</div> -->
                                     <div  class="form-floating">                                            
-                                        <input type="text" name="name" class="form-control" placeholder="Name" required="">
+                                        <input type="text" name="name" class="form-control" placeholder="Access token" required="">
                                         
-                                        <label for="floatingInput">Code</label>
+                                        <label for="floatingInput">Token</label>
                                         
                                     </div>
                                     

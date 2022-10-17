@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-        <title>Nimeche Student</title>
+        <title>NIMechE Student</title>
         <link rel="icon" type="image/png" href="<?php echo asset('templateasset\welcome\images/nimeche_logo.jpg')?> "/>
 
         <!-- CSS FILES -->
@@ -88,7 +88,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <a class="navbar-brand mx-auto mx-lg-0">NiMeche Student</a>
+                <a class="navbar-brand mx-auto mx-lg-0">NIMechE Student</a>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-lg-5">
                         <li class="nav-item">
@@ -144,7 +144,7 @@
                     <div class="col-lg-12 col-12">
                         <div class="copyright-text-wrap">
                             <p class="mb-0">
-                                <span class="copyright-text">Copyright © 2022 <a href="#"> NiMechE student </a></span> 
+                                <span class="copyright-text">Copyright © 2022 <a href="#"> NIMechE student </a></span> 
                                 <br>
                                 
                                 All rights reserved.

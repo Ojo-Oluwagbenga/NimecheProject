@@ -21,22 +21,33 @@ class PagesController extends Controller{
 
     // Old English Text
     
+    public function isloggedin($request){
+        return $request->session()->has('user');
+    }
     
     public function manager(Request $request, $pagename){
-        // return Util::Encode("vrbH", 4, 'int');
-
-        
-        $v = '';
-
-        $gen_data = $this->generalData($request);
-
+             
         $adminlimited = ['createevent', 'createticket'];
+        $nologin = ['login', 'welcome', 'start'];
 
+        if (!in_array($pagename, $nologin)){
+            if (!$this->isloggedin($request)){
+                return redirect('/login');
+            }
+        }else{
+            if ($this->isloggedin($request)){
+                return redirect('/dashboard');
+            }
+        }
         if (in_array($pagename, $adminlimited)){
             if ($gen_data['access'] !== 'admin'){
                 return 'Not for children :)';
             }
         }
+        
+
+        $v = '';
+        $gen_data = $this->generalData($request);
 
         try {
             $v = view('templates.welcome_temp.'.$pagename)->with('data',$gen_data);
@@ -53,14 +64,18 @@ class PagesController extends Controller{
 
     }
 
-    public function welcome(){
-        return view('templates.welcome_temp.welcome');        
+    public function welcome(Request $request){
+        if (!$this->isloggedin($request)){
+            return view('templates.welcome_temp.welcome');        
+        }else{
+            return redirect('/dashboard');
+        }
+        
     }
 
     public function myaccount(Request $request){
-        // v78R
-        if (!$request->session()->has('user')){
-            return redirect('/login');   
+        if (!$this->isloggedin($request)){
+            return redirect('/login');
         }
 
         $code = $request->session()->get('user');
@@ -94,7 +109,11 @@ class PagesController extends Controller{
     }
 
     public function eventdetails(Request $request, $code){
-        // v78R
+        
+        if (!$this->isloggedin($request)){
+            return redirect('/login');
+        }
+
         try{
             $id = (int) Util::Decode($code, 4, 'str');
             $model = ModelEvent::where(['id'=>$id])->first();
@@ -114,7 +133,11 @@ class PagesController extends Controller{
 
     public function foodrequests(Request $request){
 
-        $allowed_sharers  = ['NCC/345/26'];//Proceed if in allowed else else reject
+        if (!$this->isloggedin($request)){
+            return redirect('/login');
+        }
+
+        $allowed_sharers  = ['NC/2022/26'];//Proceed if in allowed else else reject
 
         // $code = $request->session()->get('user', '');
 
@@ -143,6 +166,9 @@ class PagesController extends Controller{
     }
 
     public function dashboard(Request $request){
+        if (!$this->isloggedin($request)){
+            return redirect('/login');
+        }
 
         $pdata = $this->generalData($request);
         $pdata['name'] = $request->session()->get('name', 'user');

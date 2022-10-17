@@ -1753,7 +1753,6 @@ $(document).ready(function(){
             }
         });
         $(".ddhold").click();
-        console.log(loadedschools);
     });
 
     let submit_clickable = true;
@@ -1762,7 +1761,6 @@ $(document).ready(function(){
             submit_clickable = false;   
             $('#submit').text('Submitting...');
             $('.error').remove();
-
 
             let coldata = listenfordata(['code', 'name', 'password', 'email']);
             $(".orderbybutTab .orderbybut").each(function(){
@@ -1773,8 +1771,7 @@ $(document).ready(function(){
             coldata['institution'] = $('#university .name').text();
             coldata['role'] = 'Member';
             coldata['redir'] = 'yes';
-
-            console.log(coldata);
+            
             
             axios({
                 method: 'POST',
@@ -1784,11 +1781,12 @@ $(document).ready(function(){
                 },
                 data: coldata
             }).then(response => {
+                console.log(response);
                 const data = response.data;
                 $('#submit').text('Submit');
                 submit_clickable = true;  
 
-                console.log(response);
+                
                 if (data['response'] === 'passed'){
                     sessionStorage.setItem('user', data['data']['user']);
                     window.location.href = './dashboard';
