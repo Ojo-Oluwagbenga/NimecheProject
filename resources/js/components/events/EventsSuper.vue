@@ -38,8 +38,7 @@
                     </div>
                 </div>
             </div>
-
-            
+          
 
             <div class="col-lg-6 col-12 mt-5 mt-lg-0">
                 <div class="about-thumb">
