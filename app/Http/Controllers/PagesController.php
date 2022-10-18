@@ -40,8 +40,7 @@ class PagesController extends Controller{
             if ($gen_data['access'] !== 'admin'){
                 return 'Not for children :)';
             }
-        }
-        
+        }        
 
         
 
