@@ -54,7 +54,7 @@
                                             <div class="time">Tuesday 10:48:34 PM</div>
                                         </div>
                                         <div class="cbBody ql-editor">
-                                            Cool Stuff tho
+                                            I've learnt a lot from this. Thumbs up.
                                         </div>
                                         <div class="cbIcons">
                                             <div class="reply">Reply <i class="fas fa-solid fa-reply-all" aria-hidden="true"></i></div>
@@ -90,7 +90,7 @@ export default {
     methods:{
         addComment(){
             let comment = $("#comment_message").val();
-            console.log('posting-' + comment);
+            popAlert('Feature coming soon!!!')
         },
         downloadlink(){
             let eventcode = $('meta[name="pagecode"]').attr('content');

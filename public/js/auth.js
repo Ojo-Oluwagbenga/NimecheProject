@@ -1788,18 +1788,24 @@ $(document).ready(function(){
 
                 
                 if (data['response'] === 'passed'){
+                    popAlert('Success, redirecting!');
                     sessionStorage.setItem('user', data['data']['user']);
                     window.location.href = './dashboard';
                 }else{
                     if ((data['reason'] === 'valerror')){
                         let errs = JSON.parse(data['data']);
+                        let first = true;
                         for (const key in errs) {
-                            let errtext = '<div class="error">'+errs[key]+'</div>'
-                            try {
-                                $('#'+key).prepend(errtext)
-                            } catch (error) {
-                                
-                            }
+                          if (first){
+                            first = false;
+                            popAlert(errs[key]);
+                          }
+                          let errtext = '<div class="error">'+errs[key]+'</div>'
+                          try {
+                              $('#'+key).prepend(errtext)
+                          } catch (error) {
+                              
+                          }
                             
                         }
                     }else{

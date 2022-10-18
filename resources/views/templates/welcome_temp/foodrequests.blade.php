@@ -20,7 +20,12 @@
             </div>
         </div> 
 
-        <section style="padding-top:150px" for="FoodrequestsSuper" class="vueport featured section-padding eventssuper" id="section_3">
+        <div style="height:200px"></div>
+        <div class="container" style="border-bottom: 1px dotted grey; text-align:right">
+            <h4>{{$data['ticketname']}}</h4>
+        </div>
+
+        <section for="FoodrequestsSuper" class="vueport featured section-padding eventssuper" id="section_3">
 
         </section>
     </main>

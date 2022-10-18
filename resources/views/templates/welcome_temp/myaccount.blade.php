@@ -18,7 +18,7 @@
                             <div class="hero-title-wrap d-flex align-items-center mb-4">
                                 <img src="<?php echo asset('templateasset\welcome\images/nimeche_logo.jpg') ?>" class="avatar-image avatar-image-large img-fluid" alt="">
 
-                                <h1 class="hero-title ms-3 mb-0">{{$data->name}}</h1>
+                                <h1 class="hero-title ms-3 mb-0">{{$data['name']}}</h1>
                             </div>                    
                         </div>
                     </div>
@@ -46,22 +46,22 @@
                                 </style>
                                 <p>
                                     <span class="profile-small-title">Name</span> 
-                                    <span class="c-vert">{{$data->name}}</span>
+                                    <span class="c-vert">{{$data['name']}}</span>
                                 </p>
 
                                 <p>
                                     <span class="profile-small-title">Sex</span> 
-                                    <span class="c-vert">{{$data->gender}}</span>
+                                    <span class="c-vert">{{$data['gender']}}</span>
                                 </p>
 
                                 <p>
                                     <span class="profile-small-title">Institution</span> 
-                                        <span class="c-vert">{{$data->institution}}</span>
+                                        <span class="c-vert">{{$data['institution']}}</span>
                                 </p>
 
                                 <p>
                                     <span class="profile-small-title">Code</span> 
-                                    <span class="c-vert">{{$data->code}}</span>
+                                    <span class="c-vert">{{$data['code']}}</span>
                                 </p>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                     </div>
                     
 
-                    <div class="col-lg-6 col-12" style="margin: 20px 0">
+                    <div class="col-lg-6 col-12" style="margin: 20px 0; display:none">
                         <div class="profile-thumb">
                             <div class="profile-title">
                                 <h4 class="mb-0">Accomodation Details</h4>
@@ -78,22 +78,22 @@
                             <div class="profile-body">
                                 <p>
                                     <span class="profile-small-title">Hostel Name</span> 
-                                    <span class="c-vert">{{$data->hostel}}</span>
+                                    <span class="c-vert">{{$data['hostel']}}</span>
                                 </p>
 
                                 <p>
                                     <span class="profile-small-title">Block</span> 
-                                    <span class="c-vert">Block {{$data->block}}</span>
+                                    <span class="c-vert">Block {{$data['block']}}</span>
                                 </p>
                                 
                                 <p>
                                     <span class="profile-small-title">Room</span> 
-                                    <span class="c-vert"><a href="#">Room {{$data->room}}</a></span>
+                                    <span class="c-vert"><a href="#">Room {{$data['room']}}</a></span>
                                 </p>
 
                                 <p>
                                     <span class="profile-small-title">Bunk</span> 
-                                    <span class="c-vert"><a href="#">Bunk {{$data->bunk}}</a></span>
+                                    <span class="c-vert"><a href="#">Bunk {{$data['bunk']}}</a></span>
                                 </p>
                             </div>
                         </div>
@@ -121,7 +121,7 @@
                                 </span>
                                 <div class="col-lg-12 col-12">
                                     <div class="form-floating">
-                                        <textarea class="form-control" id="message" name="message" placeholder="ddffrfe">{{$data->description}}</textarea>
+                                        <textarea class="form-control" id="message" name="message" placeholder="ddffrfe">{{$data['description']}}</textarea>
                                         
                                         <label for="floatingTextarea">Description</label>
                                     </div>

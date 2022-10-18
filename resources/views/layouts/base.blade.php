@@ -94,10 +94,7 @@
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="/dashboard" style="margin-bottom:20px">Dashboard</a>
                         </li>
-
                         
-                        
-
                         @if($data['access']=='admin')
                             <li class="nav-item">
                                 <a class="nav-link" href="/createevent" style="margin-bottom:20px">Create event</a>
@@ -107,10 +104,22 @@
                             </li>
                         @endif
 
+                        @if($data['foodaccess']=='true')
+                            <li class="nav-item">
+                                <a class="nav-link" href="/foodrequests" style="margin-bottom:20px">Food Requests</a>
+                            </li>
+                        @endif
+
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/logout" style="margin-bottom:20px">Log out</a>
+                            <a id="logout" class="nav-link" style="margin-bottom:20px">Log out</a>
                         </li>
+                        <script>
+                            $("#logout").click(function(){
+                                sessionStorage.clear();
+                                window.location.href = '/logout';
+                            });
+                        </script>
                         
                     </ul>
                     

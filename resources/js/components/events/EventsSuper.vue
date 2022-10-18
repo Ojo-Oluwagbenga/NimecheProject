@@ -1,5 +1,5 @@
 <template >
-    <div class="container">
+    <div v-if="loggedin" class="container">
         <div class="row">
             <div v-if="ticketdata.loading" class="col-lg-6 col-12" style="border-left: 3px solid red;padding-top:100px;border-right: 3px solid red;">
                 <div class="profile-thumb" >
@@ -14,13 +14,16 @@
             <div v-if="ticketdata.set" class="col-lg-6 col-12" style="border-left: 3px solid red;padding-top:100px;border-right: 3px solid red;">
                 <h5 v-if="ticketdata.userticketstate == 0"  id="sharerid" sh=1 style="padding:5px">Collecting from Sharer {{ticketdata.userticketsharer}}. <span style="color:blue;cursor:pointer" @click="togglesharer()" sh="1">Tap to change</span></h5>
                 <h5 v-if="ticketdata.userticketstate == 1"  id="sharerid" sh=1 style="padding:5px">Collect your package from Sharer {{ticketdata.userticketsharer}}.</h5>
-                <h5 v-if="ticketdata.userticketstate == 2"  id="sharerid" sh=1 style="padding:5px">Package Collected from sharer {{ticketdata.userticketsharer}} </h5>
+                <h5 v-if="ticketdata.userticketstate == 2"  id="sharerid" sh=1 style="padding:5px; color:red">Package Collected from sharer {{ticketdata.userticketsharer}} </h5>
 
                 <div class="profile-thumb">
                     <div class="profile-title">
                         <h4 class="mb-0 event-head">{{ticketdata.ticketname}}
-                            <div v-if="ticketdata.userticketstate == 0"  @click="acceptfood()" style="cursor:pointer" class="c-vert event-full">
-                                Collect
+                            <div v-if="ticketdata.userticketstate == 0"  @click="acceptfood()" style="cursor:pointer; color: blue; display:flex; flex-direction: row;" class="c-vert event-full">
+                                <span class="c-vert">Collect</span> 
+                                <span class="c-vert" style="margin-left:10px">
+                                    <svg style="height:15px; fill: blue" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M502.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-128-128c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L402.7 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l370.7 0-73.4 73.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l128-128z"/></svg>
+                                </span>
                             </div>
                         </h4>
                     </div>
@@ -72,6 +75,7 @@
 
         </div>
     </div>
+
     <div class="container" style="margin-top: 20px">
         <h2>Ongoing events</h2>
         <div class="row">
@@ -116,7 +120,7 @@ export default {
     methods:{
         togglesharer(){
             let k = this.ticketdata.userticketsharer
-            k = (k)%4;
+            k = (k)%3;
             this.ticketdata.userticketsharer = k+1;
         },
         acceptfood(){
@@ -159,6 +163,7 @@ export default {
                 loading:true,
                 set:false
             },
+            loggedin: (sessionStorage.getItem("user") !== null)
         }
     },
     mounted(){

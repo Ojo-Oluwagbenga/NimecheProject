@@ -10,12 +10,12 @@
             <div class="commentBox" style="box-shadow: rgba(0, 0, 0, 0.2) 0px 0px 5px;">
                 <div class="cbHead">
                     <div class="namePack">
-                        <div class="name">Ojo Oluwagben...</div>
+                        <div class="name">Benson Sun</div>
                     </div>
                     <div class="time">Tuesday 10:48:34 PM</div>
                 </div>
                 <div class="cbBody ql-editor">
-                    Cool Stuff tho
+                    Yeah Oluwagenga. Can we meet after the event so I can get your note?
                 </div>
                 <div class="cbIcons">
                     <div class="reply">Reply <i class="fas fa-solid fa-reply-all" aria-hidden="true"></i></div>

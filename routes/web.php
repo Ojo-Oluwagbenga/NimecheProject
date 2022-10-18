@@ -31,3 +31,7 @@ Route::get('/{pagename}', 'PagesController@manager');
 //Api Routes
 
 Route::post('/api/{class_name}/{func_name}', 'ApiController@manager');
+
+
+// for production
+// URL::forceScheme('https');

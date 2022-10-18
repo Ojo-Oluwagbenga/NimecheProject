@@ -10,15 +10,10 @@ use App\Models\User as ModelUser;
 
 class PagesController extends Controller{
     public function test(){
+        return ('In Production');
         return view('test');
     }
-
-    //     35th International Conference & Annual General Meeting
-
-    // The Nigerian Institution of Mechanical Engineers
-    // ( A division of The Nigerian Society of Engineers)
-    // National Students' Forum
-
+    
     // Old English Text
     
     public function isloggedin($request){
@@ -58,9 +53,22 @@ class PagesController extends Controller{
     }
 
     private function generalData(Request $request){
-        return $data = array(
+        $user = $request->session()->get('user', '-');
+        $allowed_sharers = ['NC/2022/DEFA'];
+
+
+        $retArr = array(
             'access' => $request->session()->get('access', 'user'),
+            'foodaccess' => 'false',
+            'sharer' => '-',
         );
+
+        if (in_array($user, $allowed_sharers)){
+            $code = $request->session()->get('user', '');
+            $retArr['foodaccess'] = 'true';
+            $retArr['sharer'] = array_search($code, $allowed_sharers) + 1;
+        }
+        return $retArr;
 
     }
 
@@ -100,7 +108,9 @@ class PagesController extends Controller{
             return $ex;
         }
 
-        return view('templates.welcome_temp.myaccount')->with('data',$model);   
+        $pdata = array_merge($this->generalData($request), $model->toArray());  
+
+        return view('templates.welcome_temp.myaccount')->with('data',$pdata);   
     }
 
     public function logout(Request $request){
@@ -137,27 +147,23 @@ class PagesController extends Controller{
             return redirect('/login');
         }
 
-        $allowed_sharers  = ['NC/2022/26'];//Proceed if in allowed else else reject
-
-        // $code = $request->session()->get('user', '');
-
-        // if (!in_array($code, $allowed_sharers)){
-        //     return 'Sure you are a sharer? See Admin';
-        // }
-        // $data = [
-        //     'sharer'=> array_search($code, $allowed_sharers),
-        // ];
-
-        // $data = array_merge($this->generalData($request), $data );    
+        $gen_data  = $this->generalData($request);
         
-        
-        $data = [
-            'sharer'=> 2,
-            'access'=> '',
-        ];
-                
+        if ($gen_data['foodaccess'] == 'false'){
+            return 'Sure you are a sharer? See Admin';
+        }
+
         try {
-            $v = view('templates.welcome_temp.foodrequests')->with('data',$data);      
+            $tikname = ModelTicket::select(['name'])->where('status', 1)->get()[0]['name'];
+            $gen_data['ticketname'] = $tikname;
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
+        
+        
+
+        try {
+            $v = view('templates.welcome_temp.foodrequests')->with('data',$gen_data);      
             return $v ; 
         } catch (\Throwable $th) {
             return 'Invalid Url';

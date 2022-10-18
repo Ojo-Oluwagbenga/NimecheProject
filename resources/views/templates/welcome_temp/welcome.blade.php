@@ -55,10 +55,6 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-lg-5">
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_1">Home</a>
-                        </li>
-
-                        <li class="nav-item">
                             <a class="nav-link click-scroll" href="#section_2">Event Guide</a>
                         </li>
 
@@ -72,6 +68,18 @@
 
                         <li class="nav-item">
                             <a class="nav-link click-scroll" href="#section_5">Contact</a>
+                        </li>
+
+                         <li class="nav-item">
+                            <a class="nav-link click-scroll" href="#section_1">Home</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="/login">Login</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link click-scroll" href="/start">Start</a>
                         </li>
                     </ul>
 
@@ -145,9 +153,9 @@
                             <h3 class="pt-2 mb-3">Basic Instructions</h3>
 
                             <p style="padding:10px">
-                                To ensure better running of the AGM program. We delightly introduce you to the conference website.
-                                The website caters for each attendees room number and meal tickets.
-                                We urge every attendee of this years conference to onboard their details to the site.
+                                To ensure better running of the AGM programme, we are delighted to introduce you to the conference application.
+                                The web application caters for each attendees room number and meal tickets.
+                                We urge every attendee of this year's conference to onboard their details to the site.<br><br>We wish you an educative stay.
                             </p>
                         </div>
 
