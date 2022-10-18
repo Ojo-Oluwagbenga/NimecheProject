@@ -34,4 +34,4 @@ Route::post('/api/{class_name}/{func_name}', 'ApiController@manager');
 
 
 // for production
-// URL::forceScheme('https');
+URL::forceScheme('https');
