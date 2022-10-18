@@ -56,18 +56,13 @@ class PagesController extends Controller{
         $user = $request->session()->get('user', '-');
         $allowed_sharers = ['NC/2022/DEFA'];
 
-
+        
         $retArr = array(
             'access' => $request->session()->get('access', 'user'),
-            'foodaccess' => 'false',
-            'sharer' => '-',
+            'foodaccess' => $request->session()->get('foodaccess', 'false'),
+            'sharer' => $request->session()->get('sharer', '-'),
         );
 
-        if (in_array($user, $allowed_sharers)){
-            $code = $request->session()->get('user', '');
-            $retArr['foodaccess'] = 'true';
-            $retArr['sharer'] = array_search($code, $allowed_sharers) + 1;
-        }
         return $retArr;
 
     }

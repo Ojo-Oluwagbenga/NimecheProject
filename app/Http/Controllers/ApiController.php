@@ -193,7 +193,7 @@ class User{
             $ret = [
                 'response' => 'failed',
                 'reason' => 'valerror',
-                'data' => json_encode($validator->errors()->get('*')),
+                'data' => 'A wall met, see admin.',
             ];
             return json_encode($ret);
         }
@@ -509,12 +509,20 @@ class User{
     }
 
     public function startsession($request, $ucode, $name){
+        $admin = 'NC/2022/DEFG';
+        $allowed_sharers = ['NC/2022/DEF8', 'NC/2022/DEF9', 'NC/2022/DEF0'];
+
+
         $request->session()->flush();
         $request->session()->put('user', $ucode);
-        $request->session()->put('name', $name);
+        $request->session()->put('name', $name); 
 
-        if ($ucode == 'NC/2022/DEFG'){
+        if ($ucode == $admin){
             $request->session()->put('access', 'admin');
+        }
+        if (in_array($ucode, $allowed_sharers)){
+            $request->session()->put('foodaccess', 'true');
+            $request->session()->put('sharer', (array_search($ucode, $allowed_sharers) + 1));
         }
                 
     }
