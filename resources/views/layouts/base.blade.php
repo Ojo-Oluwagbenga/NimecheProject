@@ -144,6 +144,8 @@
             </div>
         </nav>
 
+        <div style="height: 50px"></div>
+
         @yield ('content')
 
         <footer class="site-footer">
