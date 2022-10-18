@@ -21,6 +21,8 @@ class PagesController extends Controller{
     }
     
     public function manager(Request $request, $pagename){
+        $v = '';
+        $gen_data = $this->generalData($request);
              
         $adminlimited = ['createevent', 'createticket'];
         $nologin = ['login', 'welcome', 'start'];
@@ -41,8 +43,7 @@ class PagesController extends Controller{
         }
         
 
-        $v = '';
-        $gen_data = $this->generalData($request);
+        
 
         try {
             $v = view('templates.welcome_temp.'.$pagename)->with('data',$gen_data);
@@ -56,7 +57,7 @@ class PagesController extends Controller{
         $user = $request->session()->get('user', '-');
         $allowed_sharers = ['NC/2022/DEFA'];
 
-        
+
         $retArr = array(
             'access' => $request->session()->get('access', 'user'),
             'foodaccess' => $request->session()->get('foodaccess', 'false'),
