@@ -321,7 +321,7 @@ class User{
         }
         
         try{
-            $user = ModelUser::where([$updpair[0] => $updpair[1]])->get(['code']);
+            $user = ModelUser::where($updpair[0] , $updpair[1])->get(['code']);
         }catch(\Illuminate\Database\QueryException $ex){ 
             $ret = [
                 'response' => 'failed',
@@ -629,6 +629,120 @@ class Event{
                 }
             }
             
+            
+        }catch(\Illuminate\Database\QueryException $ex){ 
+            $ret = [
+                'response' => 'failed',
+                'reason' => $ex->getMessage(),
+                'data' => '',
+            ];
+            return json_encode($ret);
+        }
+
+        $ret = [
+            'response' => 'passed',
+            'data' => [
+                'id' => $model->id
+            ],
+        ];
+        return json_encode($ret);
+        
+    }
+
+    public static function deleteDir($dirPath) {
+        if (is_dir($dirPath)) {
+            if (substr($dirPath, strlen($dirPath) - 1, 1) != '/') {
+                $dirPath .= '/';
+            }
+            $files = glob($dirPath . '*', GLOB_MARK);
+            foreach ($files as $file) {
+                if (is_dir($file)) {
+                    self::deleteDir($file);
+                } else {
+                    unlink($file);
+                }
+            }
+            rmdir($dirPath);
+        }        
+    }
+
+    public function hot_update($request){
+        $data = $request->all();
+        self::deleteDir('eventfiles/test');
+        return 'done';
+        
+        $createset = (array) json_decode($data['createset']);    
+
+        $createset['state'] = $data['state'];
+        $data['id'] = (int) Util::Decode($data['code'], 4, 'str');        
+
+        $validator = Validator::make($createset, $this->valset);
+        if ($validator->fails()) {
+            $ret = [
+                'response' => 'failed',
+                'reason' => 'valerror',
+                'data' => json_encode($validator->errors()->get('*')),
+            ];
+            return json_encode($ret);
+        }
+
+        // File Check
+        $updcount = $data['upldcount'];
+        $fileVal = [];
+        for ($i=0; $i < $updcount ; $i++) { 
+            $fileVal['file-' . ($i + 1)] = 'required|mimes:csv,txt,pdf|max:2048';
+        }
+
+        $validator = Validator::make($request->all(), $fileVal);
+        if ($validator->fails()) {
+
+            $ret = [
+                'response' => 'failed',
+                'reason' => 'valerror',
+                'data' => json_encode($validator->errors()->get('*')),
+            ];
+            return json_encode($ret);
+        }
+        
+       
+        $model = ModelEvent::where("id", $data['id'])->first();
+
+        foreach($createset as $key => $val){
+            $model->$key = $val;
+        }
+        
+        try{
+            $model->save();
+            $mid = $model->id;
+
+            for ($i=0; $i < $updcount; $i++) {
+                $file = $request->file('file-'. ($i+1));
+
+                if($file) {
+
+                    $filename = ($i+1) . "-" . $file->getClientOriginalName();
+        
+                    // File extension
+                    $extension = $file->getClientOriginalExtension();
+        
+
+                    // File upload location
+                    $location = 'eventfiles/event_'.Util::Encode($mid, 4, 'str');
+         
+                    self::deleteDir($location);
+                    // Upload file
+                    $file->move($location,$filename);
+                    
+                }else{
+                    // Response
+                    $ret = [
+                        'response' => 'failed',
+                        'reason' => 'file-'. ($i+1) . 'not uploaded.',
+                        'data' => '',
+                    ];
+                    return json_encode($ret);
+                }
+            }           
             
         }catch(\Illuminate\Database\QueryException $ex){ 
             $ret = [

@@ -144,7 +144,12 @@
             </div>
         </nav>
 
-        <div style="height: 50px"></div>
+        <div style="height: 50px; background-color: #f9f9f9;"></div>
+        <style>
+            div.section-padding{
+                border-top: none;
+            }
+        </style>
 
         @yield ('content')
 

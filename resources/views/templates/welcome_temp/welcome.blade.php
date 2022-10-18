@@ -91,7 +91,7 @@
         <main>
 
             <section class="hero d-flex justify-content-center align-items-center" id="section_1">
-                <div class="container">
+                <div class="container" style="overflow:visible">
                     <div class="row">
 
                         <div class="col-lg-7 col-12">
@@ -268,7 +268,7 @@
                         <div class="col-lg-4 col-md-6 col-12">
                             <div class="projects-thumb">
                                 <div class="projects-info">
-                                    <small class="projects-tag">NSF Editor-in-Chief</small>
+                                    <small class="projects-tag">NSF Editor-in-Chief / Product Designer</small>
 
                                     <h3 class="projects-title">DAVID Echefulam Echendu</h3>
                                 </div>

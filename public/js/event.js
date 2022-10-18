@@ -16,18 +16,18 @@ $(document).ready(function(){
         // let obj = ;
         let fileobj = $('#up_file')[0].files[0];
         if (typeof(fileobj) !== 'undefined'){
-            if (fileobj.size < 2097152){
+            if (fileobj.size < 10097152){
                 resaddcount += 1;
                 let name = fileobj.name;
                 let el = '<div id="resadd'+resaddcount+'" class="eresource" style="padding:20x" num="'+resaddcount+'">'+
-                                '<span class="resremove">'+
-                                    '<svg style="height:14px; fill:red;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg>'+
-                                '</span>'+
-                                
-                                '<span style="position:relative">'+
-                                    '<span> '+name+'</span>'+
-                                '</span>'+                                
-                            '</div>';
+                    '<span class="resremove">'+
+                        '<svg style="height:14px; fill:red;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path d="M310.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L160 210.7 54.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L114.7 256 9.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 301.3 265.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L205.3 256 310.6 150.6z"/></svg>'+
+                    '</span>'+
+                    
+                    '<span style="position:relative">'+
+                        '<span> '+name+'</span>'+
+                    '</span>'+                                
+                '</div>';
 
                 addedfile['resadd'+resaddcount] = [fileobj, fileobj.name];
                 $('#resourceadder').before(el);
@@ -74,9 +74,21 @@ $(document).ready(function(){
             fd.append('createset',JSON.stringify(data));
             fd.append('upldcount', cc);
 
+            
+            
+
+            let url = "./api/event/addnew"
+            if ($(this).attr('type') == 'update'){
+                let code = $('meta[name="pagecode"]').attr('content');
+                let state = $('meta[name="pagestate"]').attr('content');
+                fd.append('code', code);
+                fd.append('state', state);
+                url = "../../api/event/hot_update"
+            }
+
             axios({
                 method: 'POST',
-                url: "./api/event/addnew",
+                url: url,
                 headers: {
                     "X-CSRF-TOKEN" : $('meta[name="_token"]').attr('content')
                 },
@@ -115,7 +127,7 @@ $(document).ready(function(){
 
     });
     
-    $(".c-vert.stat").click(function(){
+    $(".update.stat").click(function(){
         let state = $(this).attr('state');
         let code = $('meta[name="pagecode"]').attr('content');
         popAlert('Updating event state');
@@ -140,6 +152,11 @@ $(document).ready(function(){
             }     
         })
         .catch(error => console.error(error))
+    })
+
+    $(".redir.stat").click(function(){
+        let code = $('meta[name="pagecode"]').attr('content');
+        window.location.href = '../../editevent/' + code;
     })
 
 })

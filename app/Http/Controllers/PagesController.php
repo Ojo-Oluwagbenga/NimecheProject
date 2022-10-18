@@ -136,6 +136,29 @@ class PagesController extends Controller{
         return view('templates.welcome_temp.eventdetail')->with('data', $pdata);        
     }
 
+    public function editevent(Request $request, $code){
+        
+        if (!$this->isloggedin($request)){
+            return redirect('/login');
+        }
+
+        try{
+            $id = (int) Util::Decode($code, 4, 'str');
+            $model = ModelEvent::where(['id'=>$id])->first();
+            if (!isset($model)){
+                return 'Incorrect page';
+            }
+            $model = $model->get()->toArray()[0];
+            $model['code'] = $code;
+        }catch(\Illuminate\Database\QueryException $ex){ 
+            return $ex;
+        }
+        
+        $pdata = array_merge($this->generalData($request), $model);      
+
+        return view('templates.welcome_temp.editevent')->with('data', $pdata);        
+    }
+
     public function foodrequests(Request $request){
 
         if (!$this->isloggedin($request)){

@@ -24,6 +24,7 @@ Route::get('/myaccount', 'PagesController@myaccount');
 Route::get('/dashboard', 'PagesController@dashboard');
 
 Route::get('/eventdetail/{code}', 'PagesController@eventdetails');
+Route::get('/editevent/{code}', 'PagesController@editevent');
 Route::get('/foodrequests', 'PagesController@foodrequests');
 
 Route::get('/{pagename}', 'PagesController@manager');
@@ -34,4 +35,4 @@ Route::post('/api/{class_name}/{func_name}', 'ApiController@manager');
 
 
 // for production
-URL::forceScheme('https');
+// URL::forceScheme('https');

@@ -2,6 +2,7 @@
 
 @section('moreheads')
     <meta name="pagecode" content="{{$data['code']}}">
+    <meta name="pagestate" content="{{$data['state']}}">
     @vite(['resources/js/app.js', 'resources/css/app.css'])
     
 @endsection('moreheads') 
@@ -101,10 +102,11 @@
                 <div class="container" style="overflow-x:scroll">
                     <div class="evstatus">
                         <h3 class="c-vert name">Status</h3>
-                        <div state="2" style="background-color:black" class="c-vert stat">Done</div>
-                        <div state="1" style="background-color:green" class="c-vert stat">Start</div>
-                        <div state="0" style="background-color:#d7d705" class="c-vert stat">Queue</div>
-                        <div state="3" style="background-color:red" class="c-vert stat">Del</div>
+                        <div state="2" style="background-color:black" class="c-vert stat update">Done</div>
+                        <div state="1" style="background-color:green" class="c-vert stat update">Start</div>
+                        <div state="0" style="background-color:#d7d705" class="c-vert stat update">Queue</div>
+                        <div state="3" style="background-color:red" class="c-vert stat update">Del</div>
+                        <div state="4" style="background-color:white; color:black" class="c-vert stat redir">Edit</div>
                     </div>
                 </div>
             </section>
