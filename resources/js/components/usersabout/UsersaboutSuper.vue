@@ -10,7 +10,7 @@
                 <br>Connect with as much as possible.<strong>You may add your own descriptions from <a href="/myaccount" style="color:green">your account page</a></strong>
             </span>
 
-            <div style="margin-left: 20%; border-left:2px solid red; padding: 20px 10px" class="empty">No about yet. Be the first to <a href="/account" style="color:green">create</a> </div>
+            <div v-if="usersdesc.length == 0" style="margin-left: 20%; border-left:2px solid red; padding: 20px 10px" class="empty">No about yet. Be the first to <a href="/account" style="color:green">create</a> </div>
 
             <Userabout v-for="descrip in usersdesc" :description="descrip"/>
         </div>
