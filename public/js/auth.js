@@ -1769,14 +1769,20 @@ $(document).ready(function(){
                 }
             })
             coldata['institution'] = $('#university .name').text();
+
+            
             coldata['role'] = 'Member';
             coldata['redir'] = 'yes';
             
             
+            console.log(coldata);
             axios({
                 method: 'POST',
                 url: './api/user/addnew',
                 headers: {
+                    'Cache-Control': 'no-cache',
+                    'Pragma': 'no-cache',
+                    'Expires': '0',
                     "X-CSRF-TOKEN" : $('meta[name="_token"]').attr('content')
                 },
                 data: coldata
