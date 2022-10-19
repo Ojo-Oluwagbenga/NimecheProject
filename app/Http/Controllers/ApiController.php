@@ -668,8 +668,6 @@ class Event{
 
     public function hot_update($request){
         $data = $request->all();
-        self::deleteDir('eventfiles/test');
-        return 'done';
         
         $createset = (array) json_decode($data['createset']);    
 
@@ -715,6 +713,9 @@ class Event{
             $model->save();
             $mid = $model->id;
 
+            $location = 'eventfiles/event_'.Util::Encode($mid, 4, 'str');
+            self::deleteDir($location);
+
             for ($i=0; $i < $updcount; $i++) {
                 $file = $request->file('file-'. ($i+1));
 
@@ -725,12 +726,8 @@ class Event{
                     // File extension
                     $extension = $file->getClientOriginalExtension();
         
-
-                    // File upload location
-                    $location = 'eventfiles/event_'.Util::Encode($mid, 4, 'str');
-         
-                    self::deleteDir($location);
                     // Upload file
+                    sleep(0.3);
                     $file->move($location,$filename);
                     
                 }else{
@@ -937,6 +934,13 @@ class Event{
 
         $fetchset =  $data['fetchset'];
         $querypair =  $data['querypair'];
+
+        for ($i=0; $i < count($querypair); $i++) { 
+            if ($querypair[$i][0] == 'code'){
+                $querypair[$i][0] = 'id';
+                $querypair[$i][1] = Util::Decode($querypair[$i][1], 4, 'str');
+            }
+        }
         
         try{
             if ($fetchset == '*'){

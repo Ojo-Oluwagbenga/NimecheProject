@@ -47,8 +47,8 @@ body {
     font-family: var(--body-font-family);
     overflow-x: hidden !important; 
 }
-.container{
-  overflow-x: hidden !important;
+div.container{
+  overflow-x: hidden;
 }
 
 

@@ -77,8 +77,10 @@ $(document).ready(function(){
             
             
 
-            let url = "./api/event/addnew"
-            if ($(this).attr('type') == 'update'){
+            let url = "./api/event/addnew";
+
+            let meth_type = $(this).attr('type');
+            if (meth_type == 'update'){
                 let code = $('meta[name="pagecode"]').attr('content');
                 let state = $('meta[name="pagestate"]').attr('content');
                 fd.append('code', code);
@@ -104,8 +106,15 @@ $(document).ready(function(){
                 console.log(response);
 
                 if (data['response'] === 'passed'){
-                    popAlert('Event created!');
-                    window.location.href = './dashboard';
+                    if (meth_type == 'update'){
+                        popAlert('Event Updated!');
+                        window.location.href = '../../dashboard';
+                    }else{
+                        popAlert('Event Created!');
+                        window.location.href = './dashboard';
+                    }
+                    
+                    
                 }else{
                     if ((data['reason'] === 'valerror')){
                         let errs = JSON.parse(data['data']);

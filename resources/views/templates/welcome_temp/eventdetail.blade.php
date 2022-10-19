@@ -106,7 +106,7 @@
                         <div state="1" style="background-color:green" class="c-vert stat update">Start</div>
                         <div state="0" style="background-color:#d7d705" class="c-vert stat update">Queue</div>
                         <div state="3" style="background-color:red" class="c-vert stat update">Del</div>
-                        <div state="4" style="background-color:white; color:black" class="c-vert stat redir">Edit</div>
+                        <div state="4" style="background-color:whitesmoke; color:black" class="c-vert stat redir">Edit</div>
                     </div>
                 </div>
             </section>

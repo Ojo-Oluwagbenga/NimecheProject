@@ -47,19 +47,19 @@
                 <div class="about-thumb">
                     <div class="row">
                         <div class="col-lg-6 col-6 featured-border-bottom py-2">
-                            <strong class="featured-numbers">20+</strong>
+                            <strong class="featured-numbers">40+</strong>
 
                             <p class="featured-text">Institutions</p>
                         </div>
 
                         <div class="col-lg-6 col-6 featured-border-start featured-border-bottom ps-5 py-2">
-                            <strong class="featured-numbers">240+</strong>
+                            <strong class="featured-numbers">120+</strong>
 
-                            <p class="featured-text">Student Engineers</p>
+                            <p class="featured-text">Student Members</p>
                         </div>
 
                         <div class="col-lg-6 col-6 pt-4">
-                            <strong class="featured-numbers">40+</strong>
+                            <strong class="featured-numbers">240+</strong>
 
                             <p class="featured-text">Engineers</p>
                         </div>

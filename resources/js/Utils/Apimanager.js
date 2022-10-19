@@ -10,10 +10,11 @@ export default class Apimanager{
                 "X-CSRF-TOKEN" : $('meta[name="_token"]').attr('content')
             },
             data: {
-                querypair:{'code':eventcode},
+                querypair:[['code',eventcode]],
                 fetchset:['resources']
             },
         }).then(response => {
+            console.log(response);
             try {
                 let data = JSON.parse(response.data[0]['resources']);
                 func(data); 

@@ -153,7 +153,7 @@
                             <h3 class="pt-2 mb-3">Basic Instructions</h3>
 
                             <p style="padding:10px">
-                                To ensure better running of the AGM programme, we are delighted to introduce you to the conference application.
+                                To foster the running of the AGM programme, we are delighted to introduce you to the conference application.
                                 The web application caters for each attendees room number and meal tickets.
                                 We urge every attendee of this year's conference to onboard their details to the site.<br><br>We wish you an educative stay.
                             </p>
