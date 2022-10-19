@@ -13,6 +13,13 @@ class PagesController extends Controller{
         return ('In Production');
         return view('test');
     }
+    public function data(Request $request){
+        if ($request->session()->get('access', '-')  === 'admin'){
+            return view('data');
+        }else{
+            return 'Not allowed';
+        }        
+    }
     
     // Old English Text
     

@@ -169,6 +169,27 @@ class User{
                 
     }
 
+    public function getcollectdata($request){
+        $usernotcollected = ModelUser::where([
+            ['ticketstate', 0],
+        ])->get(['name', 'code', 'institution']);
+
+        $userwaiting = ModelUser::where([
+            ['ticketstate', 1],
+        ])->get(['name', 'code', 'institution']);
+
+        $usercollected = ModelUser::where([
+            ['ticketstate', 2],
+        ])->get(['name', 'code', 'institution']);
+
+        $ret = [
+            'user_not_collected' => $usernotcollected,
+            'user_waiting' => $userwaiting,
+            'user_collected' => $usercollected,
+        ];
+        return json_encode($ret);
+    }
+
     
 
     public function addnew($request){

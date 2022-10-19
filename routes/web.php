@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/test', 'PagesController@test');
+Route::get('/data', 'PagesController@data');
+
+
+
 Route::get('/', 'PagesController@welcome');
 Route::get('/logout', 'PagesController@logout');
 Route::get('/myaccount', 'PagesController@myaccount');
