@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Api</title>
+    <title>Ticket Report</title>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans&display=swap" rel="stylesheet">
 </head>
 <body>
     
     <!-- <div class="init" style="width:100px; height: 40px; background-color: green; border-radius: 5px"></div> -->
     
     <div class="supercont">
-        <h2 class="head">NIMechE Food List For Lunch</h2>
+        <h2 id="pgname" class="head">NIMechE Food List For Lunch</h2>
 
         <div class="listpack" id="listpackid">
 
@@ -23,6 +26,7 @@
     
     <style>
         .supercont{
+            font-family: 'PT Sans', sans-serif;
             width: 95vw;
             border: 2px dashed grey;
             border-radius: 10px 0px;
@@ -78,6 +82,7 @@
                 },
             }).then(response => {
                 console.log(response);
+                $("#pgname").text(response.data.ticketname);
                 interprete(response.data, 'user_collected', 'Collected');
                 interprete(response.data, 'user_waiting', 'Waiting');
                 interprete(response.data, 'user_not_collected', 'Not collecting');

@@ -182,7 +182,9 @@ class User{
             ['ticketstate', 2],
         ])->get(['name', 'code', 'institution']);
 
+
         $ret = [
+            'ticketname' => (ModelTicket::select(['name'])->where('status', 1)->first())['name'],
             'user_not_collected' => $usernotcollected,
             'user_waiting' => $userwaiting,
             'user_collected' => $usercollected,
